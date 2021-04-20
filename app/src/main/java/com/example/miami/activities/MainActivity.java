@@ -1,8 +1,10 @@
-package com.example.miami;
+package com.example.miami.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.miami.R;
 
 public class MainActivity extends AppCompatActivity {
 
