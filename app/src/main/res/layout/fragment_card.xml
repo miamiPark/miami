@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    tools:context=".fragments.Feed.CardFragment">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="450dp"
+        android:background="#fa2255"
+        android:scaleType="centerCrop"
+        android:src="@drawable/test_olya" />
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="20dp"
+        >
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:src="@drawable/ic_cancel"
+            android:background="@color/white"
+            android:layout_weight="1"
+            />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:src="@drawable/ic_like"
+            android:background="@color/white"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+
+</FrameLayout>
