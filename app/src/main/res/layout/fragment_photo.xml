@@ -6,10 +6,39 @@
     tools:context=".fragments.Registration.PhotoFragment">
 
     <LinearLayout
-        android:layout_height="70dp"
         android:layout_width="match_parent"
-        >
+        android:layout_height="635dp"
+        android:background="@color/dark_blue"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|end"
+            android:layout_weight="1"
+            android:text="@string/best_photos"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="40sp" />
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/ic_camera"
+            />
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="7dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:shadowRadius="5dp"
+            android:text="@string/end_button" />
     </LinearLayout>
 
 </FrameLayout>
