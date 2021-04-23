@@ -8,17 +8,17 @@
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="match_parent"
+        android:layout_width="383dp"
+        android:layout_height="511dp"
         android:layout_gravity="center"
-        android:layout_height="450dp"
-        android:background="#fa2255"
+        android:background="@color/white"
         android:scaleType="centerCrop"
         android:src="@drawable/test_olya" />
     <LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:layout_gravity="bottom"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="50dp"
         >
         <ImageButton
             android:layout_width="wrap_content"
