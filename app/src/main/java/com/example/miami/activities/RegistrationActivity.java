@@ -9,6 +9,11 @@ import com.example.miami.fragments.Registration.IdentityFragment;
 
 import android.app.ActionBar;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
+
+import org.w3c.dom.Text;
 
 public class RegistrationActivity extends AppCompatActivity {
 

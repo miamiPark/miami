@@ -2,11 +2,16 @@ package com.example.miami.fragments.Registration;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.example.miami.R;
 
@@ -62,5 +67,39 @@ public class IdentityFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_identity, container, false);
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        final EditText phoneInput = (EditText) view.findViewById(R.id.phone_input);
+        phoneInput.addTextChangedListener(new TextWatcher() {
+            private String lastChar = "";
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                int digits = phoneInput.getText().toString().length();
+                if (digits > 1) {
+                    lastChar = phoneInput.getText().toString().substring(digits - 1);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                int digits = phoneInput.getText().toString().length();
+                if (!lastChar.equals("-")) {
+                    if (digits == 3 || digits == 7) {
+                        phoneInput.append("-");
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 }

@@ -32,14 +32,16 @@
         android:layout_marginBottom="20dp"
         android:autofillHints=""
         android:background="#f4f4f5"
+        android:digits="0123456789+-"
         android:fontFamily="@font/montserrat_light"
         android:gravity="center"
-        android:hint="+79287095832"
+        android:hint="928-709-5832"
         android:inputType="phone"
         android:paddingVertical="10dp"
         android:textColor="@color/black"
         android:textColorHint="#b0b0b1"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:maxLength="12"/>
 
     <EditText
         android:id="@+id/password_input"
@@ -77,12 +79,11 @@
         android:id="@+id/phone_next"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat_regular"
-        android:textColor="@color/white"
         android:background="@color/blue"
+        android:fontFamily="@font/montserrat_regular"
         android:text="Далее"
         android:textAllCaps="false"
-        android:textSize="20sp"
-        />
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 
 </LinearLayout>
