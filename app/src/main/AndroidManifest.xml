@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MiAmi.NoActionBar">
+        <activity android:name=".activities.AuthorizationActivity"></activity>
         <activity android:name=".activities.LandingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
