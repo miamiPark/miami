@@ -12,7 +12,7 @@
         android:gravity="center"
         android:layout_marginTop="50dp"
         android:textSize="20sp"
-        android:text="@string/enter_birth_date" />
+        android:text="@string/enter_gender" />
 
     <TextView
         android:id="@+id/currentDateTime"
@@ -26,16 +26,34 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <Button
-        android:id="@+id/dateButton"
-        android:layout_width="match_parent"
+    <info.hoang8f.android.segmented.SegmentedGroup
+        xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/segmented2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:layout_gravity="center"
-        android:text="Установить дату"
-        android:onClick="setDate"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/timeButton"/>
+        android:orientation="horizontal"
+        android:background="@color/pink"
+        segmentedgroup:sc_border_width="2dp"
+        segmentedgroup:sc_tint_color="@color/white"
+        segmentedgroup:sc_checked_text_color="@color/blue"
+        segmentedgroup:sc_corner_radius="5dp">
+
+        <RadioButton
+            android:id="@+id/button21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Женщина"
+            style="@style/RadioButton" />
+
+        <RadioButton
+            android:id="@+id/button22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Мужчина"
+            style="@style/RadioButton" />
+    </info.hoang8f.android.segmented.SegmentedGroup>
 
     <LinearLayout
         android:layout_height="wrap_content"
