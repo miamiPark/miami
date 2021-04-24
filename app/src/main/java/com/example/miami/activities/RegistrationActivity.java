@@ -12,29 +12,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class RegistrationActivity extends AppCompatActivity implements NameFragment.OnClickNextButton {
+public class RegistrationActivity extends AppCompatActivity implements NameFragment.OnClickNextButtonListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-
-        fragmentManager.beginTransaction()
+        getSupportFragmentManager().beginTransaction()
                 .add(R.id.registration_view, new NameFragment(), null)
                 .commit();
-
-//        getSupportFragmentManager().beginTransaction()
-//                .add(R.id.registration_view, new DateBirthFragment(), null)
-//                .commit();
-
     }
 
     @Override
     public void onClicked() {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.nextButton, DateBirthFragment.newInstance())
+                .replace(R.id.registration_view, new DateBirthFragment(), null)
                 .commit();
-            }
+    }
 }

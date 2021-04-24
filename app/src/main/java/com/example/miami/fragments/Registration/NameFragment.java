@@ -28,15 +28,27 @@ public class NameFragment extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
     }
 
-    public interface OnClickNextButton {
+    public interface OnClickNextButtonListener {
         void onClicked();
     }
 
-    private OnClickNextButton clicker;
+    private OnClickNextButtonListener mListener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if (context instanceof OnClickNextButtonListener) {
+            mListener = (OnClickNextButtonListener) context;
+        } else {
+            throw new ClassCastException(context.toString()
+                    + " must implement NameFragment.OnClickNextButtonListener");
+        }
+    }
 
     @Override
     public void onClick(View v) {
-        clicker.onClicked();
+        mListener.onClicked();
     }
 
     @Override
