@@ -20,6 +20,6 @@ public interface LoginApi {
         }
     }
 
-    @POST("login")
+    @POST("/api/v1/login")
     Call<ResponseBody> login(@Body UserLogin userLogin);
 }
