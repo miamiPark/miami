@@ -1,6 +1,7 @@
 package com.example.miami.models.authorization;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import java.util.Objects;
 
@@ -23,6 +24,8 @@ public class LoginData {
 
 
     public boolean isValid() {
+        Log.w("TELEPHONE", mTelephone);
+        Log.w("PASSWORD", mPassword);
         return !TextUtils.isEmpty(mTelephone) && !TextUtils.isEmpty(mPassword);
     }
 

@@ -3,6 +3,7 @@ package com.example.miami.repository;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -13,6 +14,7 @@ import com.example.miami.models.authorization.AuthProgress;
 import com.example.miami.network.AuthApi;
 import com.example.miami.network.LoginApi;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,9 +47,10 @@ public class AuthRepo {
 
     private void login(final MutableLiveData<AuthProgress> progress, @NonNull final String telephone, @NonNull final String password) {
         LoginApi api = authApi.getmLoginApi();
-        api.login(new LoginApi.UserLogin(telephone, password)).enqueue(new Callback<Response>() {
+        api.login(new LoginApi.UserLogin(telephone, password)).enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<Response> call, Response<Response> response) {
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.w("response", response.toString());
                 if (response.isSuccessful()) {
                     progress.postValue(AuthProgress.SUCCESS);
                 } else {
@@ -56,7 +59,7 @@ public class AuthRepo {
             }
 
             @Override
-            public void onFailure(Call<Response> call, Throwable t) {
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
                 progress.postValue(AuthProgress.FAILED);
             }
         });

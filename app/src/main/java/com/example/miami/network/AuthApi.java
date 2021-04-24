@@ -19,7 +19,7 @@ public class AuthApi {
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(MoshiConverterFactory.create())
                 .baseUrl(new HttpUrl.Builder().scheme("http")
-                        .host("35.228.245.99")
+                        .host("35.228.245.99/api/v1/")
                         .build())
                 .client(mOkHttpClient)
                 .build();
