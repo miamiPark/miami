@@ -5,29 +5,26 @@
     android:layout_height="match_parent"
     tools:context=".fragments.Registration.HeaderRegistrationFragment">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_height="70dp"
         android:layout_width="match_parent"
         android:orientation="horizontal"
         >
         <ImageButton
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_height="match_parent"
+            android:layout_width="70dp"
             android:src="@drawable/ic_left_arrow_gray"
             android:background="@color/white"
 
             />
 
         <ImageView
+            android:layout_centerInParent="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-
-            android:scaleType="center"
             android:src="@drawable/ic_like">
-
         </ImageView>
-    </LinearLayout>
+    </RelativeLayout>
 
 </FrameLayout>
