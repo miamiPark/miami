@@ -14,7 +14,6 @@ import com.example.miami.R;
 
 public class NameFragment extends Fragment implements View.OnClickListener {
 
-
     public NameFragment() {
         super();
     }

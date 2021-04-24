@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/fragment_date_birth"
     tools:context=".fragments.Registration.DateBirthFragment">
 
     <LinearLayout
@@ -37,22 +36,39 @@
         android:textStyle="bold"
         android:text="@string/about_you" />
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="120dp"
-        android:textSize="20sp"
-        android:text="@string/enter_birth_date" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="20dp"
+        tools:context=".RegistrationActivity">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/enter_birth_date"/>
+
+        <DatePicker
+            android:id="@+id/datePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"/>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="20dp"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="50dp"
         >
         <Button
+            android:id="@+id/nextButton"
             android:layout_width="200dp"
             android:layout_height="match_parent"
             android:text="@string/continue_button"
