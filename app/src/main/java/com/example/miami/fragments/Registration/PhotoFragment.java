@@ -1,5 +1,6 @@
 package com.example.miami.fragments.Registration;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,7 +16,7 @@ import com.example.miami.R;
  * Use the {@link PhotoFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PhotoFragment extends Fragment {
+public class PhotoFragment extends Fragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,7 +28,7 @@ public class PhotoFragment extends Fragment {
     private String mParam2;
 
     public PhotoFragment() {
-        // Required empty public constructor
+        super();
     }
 
     /**
@@ -57,10 +58,35 @@ public class PhotoFragment extends Fragment {
         }
     }
 
+    public interface OnClickNextButtonListener {
+        void onClickedMain();
+    }
+
+    private PhotoFragment.OnClickNextButtonListener mListener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if (context instanceof PhotoFragment.OnClickNextButtonListener) {
+            mListener = (PhotoFragment.OnClickNextButtonListener) context;
+        } else {
+            throw new ClassCastException(context.toString()
+                    + " must implement PhotoFragment.OnClickNextButtonListener");
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        mListener.onClickedMain();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_photo, container, false);
+        View view = inflater.inflate(R.layout.fragment_photo, container, false);
+        view.findViewById(R.id.finishButton).setOnClickListener(this);
+        return view;
     }
 }

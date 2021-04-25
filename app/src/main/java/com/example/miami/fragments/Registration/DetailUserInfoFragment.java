@@ -26,7 +26,7 @@ public class DetailUserInfoFragment extends Fragment implements View.OnClickList
     }
 
     public interface OnClickNextButtonListener {
-        void onClicked();
+        void onClickedPhoto();
     }
 
     private OnClickNextButtonListener mListener;
@@ -45,7 +45,7 @@ public class DetailUserInfoFragment extends Fragment implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        mListener.onClicked();
+        mListener.onClickedPhoto();
     }
 
     @Override
