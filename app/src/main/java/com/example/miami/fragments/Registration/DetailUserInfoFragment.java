@@ -51,7 +51,7 @@ public class DetailUserInfoFragment extends Fragment implements View.OnClickList
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_name, container, false);
+        View view = inflater.inflate(R.layout.fragment_detailed_user_info, container, false);
         view.findViewById(R.id.nextButton).setOnClickListener(this);
         return view;
     }

@@ -35,7 +35,7 @@
         android:layout_width="260dp"
         android:background="@color/white"
 
-        segmentedgroup:sc_border_width="4dp"
+        segmentedgroup:sc_border_width="3dp"
         segmentedgroup:sc_tint_color="@color/pink"
         segmentedgroup:sc_checked_text_color="@color/white"
         >
@@ -47,7 +47,6 @@
             android:fontFamily="@font/montserrat_regular"
             android:text="Женщина"
             android:textSize="17sp"
-
             style="@style/RadioButton" />
 
         <RadioButton

@@ -30,7 +30,8 @@ import org.w3c.dom.Text;
 
 public class RegistrationActivity extends AppCompatActivity implements
         IdentityFragment.OnClickNextButtonListener, NameFragment.OnClickNextButtonListener,
-        DateBirthFragment.OnClickNextButtonListener, GenderPickerFragment.OnClickNextButtonListener {
+        DateBirthFragment.OnClickNextButtonListener, GenderPickerFragment.OnClickNextButtonListener,
+        DetailUserInfoFragment.OnClickNextButtonListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
