@@ -61,7 +61,7 @@ public class DateBirthFragment extends DialogFragment implements DatePickerDialo
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_date_birth, container, false);
-        view.findViewById(R.id.nextButton).setOnClickListener(this);
+        view.findViewById(R.id.date_next).setOnClickListener(this);
         return view;
 
     }

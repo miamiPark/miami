@@ -37,7 +37,7 @@ public class RegistrationActivity extends AppCompatActivity
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_registration, new HeaderRegistrationFragment(), null)
-                .add(R.id.fragment_registration, new IdentityFragment(), null)
+                .add(R.id.fragment_registration, IdentityFragment.newInstance(), null)
                 .commit();
     }
 

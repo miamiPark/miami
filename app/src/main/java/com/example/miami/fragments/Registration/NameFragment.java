@@ -54,7 +54,7 @@ public class NameFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_name, container, false);
-        view.findViewById(R.id.nextButton).setOnClickListener(this);
+        view.findViewById(R.id.name_next).setOnClickListener(this);
         return view;
     }
 }
