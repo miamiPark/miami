@@ -2,6 +2,12 @@ package com.example.miami.fragments.Registration;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,32 +15,22 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Toast;
-
 import com.example.miami.R;
 import com.example.miami.models.registration.RegistrationState;
 import com.example.miami.viewModels.RegistrationViewModel;
+import com.skydoves.powerspinner.OnSpinnerItemSelectedListener;
+import com.skydoves.powerspinner.PowerSpinnerView;
 
-import info.hoang8f.android.segmented.SegmentedGroup;
-
-public class GenderPickerFragment extends Fragment {
+public class DetailUserInfoFragment extends Fragment {
 
     private RegistrationViewModel mRegistrationViewModel;
 
-    public GenderPickerFragment() {
+    public DetailUserInfoFragment() {
         super();
     }
 
-    public static GenderPickerFragment newInstance() {
-        return new GenderPickerFragment();
+    public static DetailUserInfoFragment newInstance() {
+        return new DetailUserInfoFragment();
     }
 
     @Override
@@ -45,7 +41,7 @@ public class GenderPickerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_gender_picker, container, false);
+        return inflater.inflate(R.layout.fragment_detailed_user_info, container, false);
     }
 
     @Override
@@ -54,48 +50,43 @@ public class GenderPickerFragment extends Fragment {
 
         mRegistrationViewModel = new ViewModelProvider(requireActivity()).get(RegistrationViewModel.class);
 
-        Button buttonNext = view.findViewById(R.id.gender_next);
-        buttonNext.setEnabled(false);
+        Button buttonNext = view.findViewById(R.id.detail_info_next);
 
         mRegistrationViewModel.getProgress()
-                .observe(getViewLifecycleOwner(), new GenderPickerObserver(buttonNext));
-
-        SegmentedGroup group = view.findViewById(R.id.segmented2);
-        group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                buttonNext.setEnabled(true);
-            }
-        });
+                .observe(getViewLifecycleOwner(), new DetailUserInfoObserver(buttonNext));
 
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int id = group.getCheckedRadioButtonId();
-                RadioButton radio = view.findViewById(id);
+                EditText job = view.findViewById(R.id.job_input);
+                PowerSpinnerView university = view.findViewById(R.id.university_input);
+                EditText aboutMe = view.findViewById(R.id.about_me_input);
 
-                String sex = group.indexOfChild(radio) == 0 ? "female" : "male";
-                mRegistrationViewModel.gender(sex);
+                mRegistrationViewModel.detailInfo(
+                        job.getText().toString(),
+                        university.getText().toString(),
+                        aboutMe.getText().toString()
+                );
             }
         });
     }
 
-    public class GenderPickerObserver implements Observer<RegistrationState> {
+    public class DetailUserInfoObserver implements Observer<RegistrationState> {
 
         private final Button mNextButton;
 
-        public GenderPickerObserver(Button nextButton) {
+        public DetailUserInfoObserver(Button nextButton) {
             mNextButton = nextButton;
         }
 
         @Override
         public void onChanged(RegistrationState registrationState) {
-            if (registrationState == RegistrationState.GENDER_SUCCESS) {
+            if (registrationState == RegistrationState.DETAIL_INFO_SUCCESS) {
                 mNextButton.setEnabled(true);
                 requireActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.registration_view, new DetailUserInfoFragment())
+                        .replace(R.id.registration_view, new PhotoFragment())
                         .commit();
             }
         }

@@ -1,82 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".fragments.Registration.DateBirthFragment">
 
-    <LinearLayout
-        android:layout_height="70dp"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        >
-        <ImageButton
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:src="@drawable/ic_left_arrow_gray"
-            android:background="@color/white"
-            />
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:scaleType="center"
-            android:src="@drawable/ic_like">
-        </ImageView>
-    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_semibold"
+        android:gravity="center"
+        android:text="@string/about_you"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:layout_marginBottom="30dp"/>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="50dp"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        android:text="@string/about_you" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="100dp"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
-        android:paddingTop="20dp"
-        tools:context=".RegistrationActivity">
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="@string/enter_birth_date"/>
-
-        <DatePicker
-            android:id="@+id/datePicker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/button"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"/>
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:layout_marginBottom="50dp"
-        >
-        <Button
-            android:id="@+id/nextButton"
-            android:layout_width="200dp"
-            android:layout_height="match_parent"
-            android:text="@string/continue_button"
-            android:textSize="18sp"
-            android:background="@color/blue"
-            android:layout_weight="0.5"
-            android:layout_gravity="top"
-            />
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="@string/enter_birth_date"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:layout_marginBottom="20dp"/>
 
-</FrameLayout>
+
+    <DatePicker
+        android:id="@+id/datePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:endYear="2006"
+        android:startYear="1940"/>
+
+    <Button
+        android:id="@+id/date_next"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="@string/continue_button"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"/>
+
+</LinearLayout>
