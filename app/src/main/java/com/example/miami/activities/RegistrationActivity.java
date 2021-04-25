@@ -27,8 +27,7 @@ import android.widget.EditText;
 import org.w3c.dom.Text;
 
 
-public class RegistrationActivity extends AppCompatActivity
-        implements NameFragment.OnClickNextButtonListener, DateBirthFragment.OnClickNextButtonListener {
+public class RegistrationActivity extends AppCompatActivity implements DateBirthFragment.OnClickNextButtonListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +40,6 @@ public class RegistrationActivity extends AppCompatActivity
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.registration_view, new IdentityFragment(), null)
-                .commit();
-    }
-
-    @Override
-    public void onClicked() {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.registration_view, new DateBirthFragment(), null)
                 .commit();
     }
 

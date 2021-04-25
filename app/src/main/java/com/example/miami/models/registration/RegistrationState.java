@@ -5,7 +5,8 @@ public enum RegistrationState {
     ERROR,
     INVALID_INPUTS,
     IN_PROGRESS,
-    MIDDLEWARE_SUCCESS,
+    IDENTITY_SUCCESS,
+    NAME_SUCCESS,
     SUCCESS,
     FAILED
 }

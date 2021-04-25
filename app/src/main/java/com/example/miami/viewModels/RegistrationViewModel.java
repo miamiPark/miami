@@ -12,8 +12,8 @@ import com.example.miami.models.registration.RegistrationState;
 
 public class RegistrationViewModel extends AndroidViewModel {
 
-    private RegistrationData mRegistrationData = new RegistrationData();
-    private MediatorLiveData<RegistrationState> mRegistrationState  = new MediatorLiveData<>();
+    private final RegistrationData mRegistrationData = new RegistrationData();
+    private final MediatorLiveData<RegistrationState> mRegistrationState  = new MediatorLiveData<>();
 
     public RegistrationViewModel(@NonNull Application application) {
         super(application);
@@ -33,9 +33,19 @@ public class RegistrationViewModel extends AndroidViewModel {
             return;
         }
 
-        mRegistrationState.postValue(RegistrationState.MIDDLEWARE_SUCCESS);
+        mRegistrationState.postValue(RegistrationState.IDENTITY_SUCCESS);
 
         // добавить фетч на номер телефона
     }
 
+    public void name(String name) {
+        mRegistrationData.setName(name);
+
+        if (!mRegistrationData.isValidName()) {
+            mRegistrationState.postValue(RegistrationState.ERROR);
+            return;
+        }
+
+        mRegistrationState.postValue(RegistrationState.NAME_SUCCESS);
+    }
 }

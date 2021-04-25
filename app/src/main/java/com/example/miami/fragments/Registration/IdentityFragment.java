@@ -21,6 +21,8 @@ import com.example.miami.R;
 import com.example.miami.models.registration.RegistrationState;
 import com.example.miami.viewModels.RegistrationViewModel;
 
+import java.util.Objects;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link IdentityFragment#newInstance} factory method to
@@ -30,21 +32,10 @@ public class IdentityFragment extends Fragment {
 
     private RegistrationViewModel mRegistrationViewModel;
 
-    public IdentityFragment() {
-        // Required empty public constructor
-    }
+    public IdentityFragment() {}
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment IdentityFragment.
-     */
     public static IdentityFragment newInstance() {
-        IdentityFragment fragment = new IdentityFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
+        return new IdentityFragment();
     }
 
     @Override
@@ -63,7 +54,7 @@ public class IdentityFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mRegistrationViewModel = new ViewModelProvider(getActivity()).get(RegistrationViewModel.class);
+        mRegistrationViewModel = new ViewModelProvider(Objects.requireNonNull(getActivity())).get(RegistrationViewModel.class);
 
         Button buttonNext = view.findViewById(R.id.phone_next);
 
@@ -71,11 +62,12 @@ public class IdentityFragment extends Fragment {
                 .observe(getViewLifecycleOwner(), new IdentityObserver(buttonNext));
 
         buttonNext.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                EditText phoneInput = (EditText) view.findViewById(R.id.phone_input);
-                EditText password = (EditText) view.findViewById(R.id.password_input);
-                EditText repeatPassword = (EditText) view.findViewById(R.id.repeat_password_input);
+                EditText phoneInput = view.findViewById(R.id.phone_input);
+                EditText password = view.findViewById(R.id.password_input);
+                EditText repeatPassword = view.findViewById(R.id.repeat_password_input);
 
                 mRegistrationViewModel.identity(
                         phoneInput.getText().toString(),
@@ -114,7 +106,7 @@ public class IdentityFragment extends Fragment {
 
     public class IdentityObserver implements Observer<RegistrationState> {
 
-        public Button mNextButton;
+        private final Button mNextButton;
 
         public IdentityObserver(Button nextButton) {
             mNextButton = nextButton;
@@ -125,9 +117,9 @@ public class IdentityFragment extends Fragment {
             if (registrationState == RegistrationState.ERROR) {
                 mNextButton.setEnabled(true);
                 Toast.makeText(getContext(), "Пароли не совпадают", Toast.LENGTH_LONG).show();
-            } else if (registrationState == RegistrationState.MIDDLEWARE_SUCCESS) {
+            } else if (registrationState == RegistrationState.IDENTITY_SUCCESS) {
                 mNextButton.setEnabled(true);
-                getActivity()
+                Objects.requireNonNull(getActivity())
                         .getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.registration_view, new NameFragment())
