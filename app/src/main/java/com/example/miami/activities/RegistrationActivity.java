@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.miami.R;
+import com.example.miami.fragments.Registration.DetailUserInfoFragment;
 import com.example.miami.fragments.Registration.NameFragment;
 import com.example.miami.fragments.Registration.DateBirthFragment;
 import com.example.miami.fragments.Registration.GenderPickerFragment;
@@ -29,7 +30,8 @@ import org.w3c.dom.Text;
 
 public class RegistrationActivity extends AppCompatActivity implements
         IdentityFragment.OnClickNextButtonListener, NameFragment.OnClickNextButtonListener,
-        DateBirthFragment.OnClickNextButtonListener {
+        DateBirthFragment.OnClickNextButtonListener, GenderPickerFragment.OnClickNextButtonListener,
+        DetailUserInfoFragment.OnClickNextButtonListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,14 @@ public class RegistrationActivity extends AppCompatActivity implements
     public void onClickedGender() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_registration, new GenderPickerFragment(), null)
+                .add(R.id.fragment_registration, new HeaderRegistrationFragment(), null)
+                .commit();
+    }
+
+    @Override
+    public void onClickedDetailUserInfo() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_registration, new DetailUserInfoFragment(), null)
                 .add(R.id.fragment_registration, new HeaderRegistrationFragment(), null)
                 .commit();
     }
