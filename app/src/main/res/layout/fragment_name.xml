@@ -1,76 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".fragments.Registration.NameFragment">
 
-    <LinearLayout
-        android:layout_height="70dp"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        >
-        <ImageButton
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:src="@drawable/ic_left_arrow_gray"
-            android:background="@color/white"
-            />
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:scaleType="center"
-            android:src="@drawable/ic_like">
-        </ImageView>
-    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_semibold"
+        android:gravity="center"
+        android:text="@string/about_you"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:layout_marginBottom="34dp"/>
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="50dp"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        android:text="@string/about_you" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="120dp"
-        android:textSize="20sp"
-        android:textStyle="normal"
-        android:text="@string/enter_name" />
+        android:fontFamily="@font/montserrat_regular"
+        android:text="@string/enter_name"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:layout_marginBottom="20dp"/>
 
     <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
+        android:id="@+id/edit_text"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:autofillHints=""
+        android:background="#f4f4f5"
+        android:fontFamily="@font/montserrat_light"
+        android:gravity="center"
         android:hint="@string/enter_name"
         android:inputType="textPersonName"
-        android:autofillHints="false" />
+        android:paddingVertical="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="#b0b0b1"
+        android:textSize="20sp"
+        android:layout_marginBottom="40dp"/>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/name_next"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="20dp"
-        >
-        <Button
-            android:id="@+id/nextButton"
-            android:layout_width="200dp"
-            android:layout_height="match_parent"
-            android:text="@string/continue_button"
-            android:textSize="18sp"
-            android:background="@color/blue"
-            android:layout_weight="0.5"
-            android:layout_gravity="top"
-            />
-    </LinearLayout>
+        android:background="@color/blue"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="Далее"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_marginBottom="20dp"/>
 
-</FrameLayout>
+</LinearLayout>
