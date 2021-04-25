@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.miami.R;
 
-public class DetailUserInfoFragment extends Fragment implements View.OnClickListener {
+public class DetailUserInfoFragment extends Fragment {
 
     public DetailUserInfoFragment() {
         super();
@@ -25,34 +25,9 @@ public class DetailUserInfoFragment extends Fragment implements View.OnClickList
         super.onCreate(savedInstanceState);
     }
 
-    public interface OnClickNextButtonListener {
-        void onClickedPhoto();
-    }
-
-    private OnClickNextButtonListener mListener;
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        if (context instanceof OnClickNextButtonListener) {
-            mListener = (OnClickNextButtonListener) context;
-        } else {
-            throw new ClassCastException(context.toString()
-                    + " must implement NameFragment.OnClickNextButtonListener");
-        }
-    }
-
-    @Override
-    public void onClick(View v) {
-        mListener.onClickedPhoto();
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_detailed_user_info, container, false);
-        view.findViewById(R.id.nextButton).setOnClickListener(this);
-        return view;
+        return inflater.inflate(R.layout.fragment_detailed_user_info, container, false);
     }
 }

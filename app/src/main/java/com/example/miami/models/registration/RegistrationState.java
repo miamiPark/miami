@@ -7,6 +7,8 @@ public enum RegistrationState {
     IN_PROGRESS,
     IDENTITY_SUCCESS,
     NAME_SUCCESS,
+    DATE_SUCCESS,
+    GENDER_SUCCESS,
     SUCCESS,
-    FAILED
+    FAILED;
 }

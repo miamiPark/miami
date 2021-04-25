@@ -32,7 +32,8 @@
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:autofillHints=""
-        android:background="#f4f4f5"
+        android:background="@drawable/rounded_edittext"
+
         android:fontFamily="@font/montserrat_light"
         android:gravity="center"
         android:hint="@string/enter_name"

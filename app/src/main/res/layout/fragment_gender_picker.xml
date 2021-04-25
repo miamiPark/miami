@@ -41,7 +41,7 @@
         >
 
         <RadioButton
-            android:id="@+id/button21"
+            android:id="@+id/button_female"
             android:layout_width="130dp"
             android:layout_height="40dp"
             android:fontFamily="@font/montserrat_regular"
@@ -50,7 +50,7 @@
             style="@style/RadioButton" />
 
         <RadioButton
-            android:id="@+id/button22"
+            android:id="@+id/button_male"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:fontFamily="@font/montserrat_regular"
@@ -60,7 +60,7 @@
     </info.hoang8f.android.segmented.SegmentedGroup>
 
     <Button
-        android:id="@+id/nextButton"
+        android:id="@+id/gender_next"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:background="@color/blue"

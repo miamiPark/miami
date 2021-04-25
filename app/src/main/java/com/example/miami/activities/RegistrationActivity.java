@@ -20,7 +20,7 @@ import android.os.Bundle;
 import org.w3c.dom.Text;
 
 
-public class RegistrationActivity extends AppCompatActivity implements DateBirthFragment.OnClickNextButtonListener {
+public class RegistrationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +33,6 @@ public class RegistrationActivity extends AppCompatActivity implements DateBirth
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.registration_view, new IdentityFragment(), null)
-                .commit();
-    }
-
-    @Override
-    public void onClickedGender() {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_registration, new GenderPickerFragment(), null)
-                .add(R.id.fragment_registration, new HeaderRegistrationFragment(), null)
                 .commit();
     }
 }

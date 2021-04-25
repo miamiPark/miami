@@ -48,4 +48,20 @@ public class RegistrationViewModel extends AndroidViewModel {
 
         mRegistrationState.postValue(RegistrationState.NAME_SUCCESS);
     }
+
+    public void date(int day, int month, int year) {
+        mRegistrationData.setDate(day, month, year);
+
+        if (!mRegistrationData.isValidDate()) {
+            mRegistrationState.postValue(RegistrationState.ERROR);
+            return;
+        }
+
+        mRegistrationState.postValue(RegistrationState.DATE_SUCCESS);
+    }
+
+    public void gender(String sex) {
+        mRegistrationData.setSex(sex);
+        mRegistrationState.postValue(RegistrationState.GENDER_SUCCESS);
+    }
 }

@@ -2,6 +2,7 @@
 <resources>
     <string-array
         name="universities">
+        <item></item>
         <item>BMSTU</item>
         <item>MSU</item>
     </string-array>

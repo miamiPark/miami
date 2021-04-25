@@ -2,6 +2,12 @@ package com.example.miami.models.registration;
 
 import android.text.TextUtils;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 public class RegistrationData {
     private String mTelephone;
     private String mPassword;
@@ -105,5 +111,33 @@ public class RegistrationData {
 
     public boolean isValidName() {
         return !TextUtils.isEmpty(mName);
+    }
+
+    public void setDate(int day, int month, int year) {
+        mDay = day;
+        mMonth = month;
+        mYear = year;
+    }
+
+    public boolean isValidDate() {
+        Date currentDate = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+        String dateText = dateFormat.format(currentDate);
+        String[] values = dateText.split("\\.");
+        int day = Integer.parseInt(values[0]);
+        int month = Integer.parseInt(values[1]);
+        int year = Integer.parseInt(values[2]);
+
+        if (mYear > year) {
+            return false;
+        } else if (mYear == year && mMonth > month) {
+            return false;
+        } else {
+            return mYear != year || month != mMonth || mDay <= day;
+        }
+    }
+
+    public void setSex(String sex) {
+        mSex = sex;
     }
 }

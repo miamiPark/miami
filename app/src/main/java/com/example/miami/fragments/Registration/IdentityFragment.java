@@ -32,7 +32,9 @@ public class IdentityFragment extends Fragment {
 
     private RegistrationViewModel mRegistrationViewModel;
 
-    public IdentityFragment() {}
+    public IdentityFragment() {
+        super();
+    }
 
     public static IdentityFragment newInstance() {
         return new IdentityFragment();
@@ -54,7 +56,7 @@ public class IdentityFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mRegistrationViewModel = new ViewModelProvider(Objects.requireNonNull(getActivity())).get(RegistrationViewModel.class);
+        mRegistrationViewModel = new ViewModelProvider(requireActivity()).get(RegistrationViewModel.class);
 
         Button buttonNext = view.findViewById(R.id.phone_next);
 
@@ -62,7 +64,6 @@ public class IdentityFragment extends Fragment {
                 .observe(getViewLifecycleOwner(), new IdentityObserver(buttonNext));
 
         buttonNext.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 EditText phoneInput = view.findViewById(R.id.phone_input);
@@ -119,7 +120,7 @@ public class IdentityFragment extends Fragment {
                 Toast.makeText(getContext(), "Пароли не совпадают", Toast.LENGTH_LONG).show();
             } else if (registrationState == RegistrationState.IDENTITY_SUCCESS) {
                 mNextButton.setEnabled(true);
-                Objects.requireNonNull(getActivity())
+                requireActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.registration_view, new NameFragment())
