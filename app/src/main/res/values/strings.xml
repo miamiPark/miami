@@ -9,4 +9,7 @@
     <string name="enter_gender">Выберите пол</string>
     <string name="best_photos">Выберите лучшие фотографии</string>
     <string name="end_button">Завершить!</string>
+    <string name="auth">Авторизация</string>
+    <string name="input_number_pass">Введите номер телефона и пароль:</string>
+    <string name="coming">Войти</string>
 </resources>

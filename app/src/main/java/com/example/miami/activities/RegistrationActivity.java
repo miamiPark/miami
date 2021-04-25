@@ -17,10 +17,10 @@ import com.example.miami.fragments.Registration.IdentityFragment;
 import android.os.Bundle;
 
 
-public class RegistrationActivity extends AppCompatActivity implements
-        IdentityFragment.OnClickNextButtonListener, NameFragment.OnClickNextButtonListener,
-        DateBirthFragment.OnClickNextButtonListener, GenderPickerFragment.OnClickNextButtonListener,
-        DetailUserInfoFragment.OnClickNextButtonListener, PhotoFragment.OnClickNextButtonListener {
+import org.w3c.dom.Text;
+
+
+public class RegistrationActivity extends AppCompatActivity implements DateBirthFragment.OnClickNextButtonListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,23 +29,10 @@ public class RegistrationActivity extends AppCompatActivity implements
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_registration, new HeaderRegistrationFragment(), null)
-                .add(R.id.fragment_registration, new IdentityFragment(), null)
                 .commit();
-    }
 
-    @Override
-    public void onClickedName() {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_registration, new NameFragment(), null)
-                .add(R.id.fragment_registration, new HeaderRegistrationFragment(), null)
-                .commit();
-    }
-
-    @Override
-    public void onClicked() {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_registration, new DateBirthFragment(), null)
-                .add(R.id.fragment_registration, new HeaderRegistrationFragment(), null)
+                .add(R.id.registration_view, new IdentityFragment(), null)
                 .commit();
     }
 
@@ -55,26 +42,5 @@ public class RegistrationActivity extends AppCompatActivity implements
                 .replace(R.id.fragment_registration, new GenderPickerFragment(), null)
                 .add(R.id.fragment_registration, new HeaderRegistrationFragment(), null)
                 .commit();
-    }
-
-    @Override
-    public void onClickedDetailUserInfo() {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_registration, new DetailUserInfoFragment(), null)
-                .add(R.id.fragment_registration, new HeaderRegistrationFragment(), null)
-                .commit();
-    }
-
-    @Override
-    public void onClickedPhoto() {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_registration, new PhotoFragment(), null)
-                .add(R.id.fragment_registration, new HeaderRegistrationFragment(), null)
-                .commit();
-    }
-
-    @Override
-    public void onClickedMain() {
-        this.onBackPressed();
     }
 }

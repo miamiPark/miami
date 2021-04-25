@@ -30,7 +30,7 @@ public class LandingActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         // add auth activity
-                        startActivity(new Intent());
+                        startActivity(new Intent(LandingActivity.this, AuthorizationActivity.class));
                     }
                 });
     }
