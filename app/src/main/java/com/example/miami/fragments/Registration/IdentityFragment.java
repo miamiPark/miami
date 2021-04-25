@@ -1,5 +1,6 @@
 package com.example.miami.fragments.Registration;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,7 +21,7 @@ import com.example.miami.R;
  * Use the {@link IdentityFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class IdentityFragment extends Fragment {
+public class IdentityFragment extends Fragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,7 +33,7 @@ public class IdentityFragment extends Fragment {
     private String mParam2;
 
     public IdentityFragment() {
-        // Required empty public constructor
+        super();
     }
 
     /**
@@ -62,11 +63,37 @@ public class IdentityFragment extends Fragment {
         }
     }
 
+    public interface OnClickNextButtonListener {
+        void onClickedName();
+    }
+
+    private IdentityFragment.OnClickNextButtonListener mListener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if (context instanceof IdentityFragment.OnClickNextButtonListener) {
+            mListener = (IdentityFragment.OnClickNextButtonListener) context;
+        } else {
+            throw new ClassCastException(context.toString()
+                    + " must implement IdentityFragment.OnClickNextButtonListener");
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        mListener.onClickedName();
+    }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_identity, container, false);
+        View view = inflater.inflate(R.layout.fragment_identity, container, false);
+        view.findViewById(R.id.phone_next).setOnClickListener(this);
+        return view;
     }
 
     @SuppressWarnings("ConstantConditions")

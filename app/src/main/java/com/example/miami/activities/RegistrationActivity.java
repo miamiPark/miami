@@ -27,8 +27,9 @@ import android.widget.EditText;
 import org.w3c.dom.Text;
 
 
-public class RegistrationActivity extends AppCompatActivity
-        implements NameFragment.OnClickNextButtonListener, DateBirthFragment.OnClickNextButtonListener {
+public class RegistrationActivity extends AppCompatActivity implements
+        IdentityFragment.OnClickNextButtonListener, NameFragment.OnClickNextButtonListener,
+        DateBirthFragment.OnClickNextButtonListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,16 +43,26 @@ public class RegistrationActivity extends AppCompatActivity
     }
 
     @Override
+    public void onClickedName() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_registration, new NameFragment(), null)
+                .add(R.id.fragment_registration, new HeaderRegistrationFragment(), null)
+                .commit();
+    }
+
+    @Override
     public void onClicked() {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.registration_view, new DateBirthFragment(), null)
+                .replace(R.id.fragment_registration, new DateBirthFragment(), null)
+                .add(R.id.fragment_registration, new HeaderRegistrationFragment(), null)
                 .commit();
     }
 
     @Override
     public void onClickedGender() {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.registration_view, new GenderPickerFragment(), null)
+                .replace(R.id.fragment_registration, new GenderPickerFragment(), null)
+                .add(R.id.fragment_registration, new HeaderRegistrationFragment(), null)
                 .commit();
     }
 }
