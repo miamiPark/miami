@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:background="@color/blue"
         android:fontFamily="@font/montserrat_regular"
-        android:text="Далее"
+        android:text="@string/continue_button"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="20sp"

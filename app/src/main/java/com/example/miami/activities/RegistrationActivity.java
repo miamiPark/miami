@@ -1,28 +1,21 @@
 package com.example.miami.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import com.example.miami.R;
+
 import com.example.miami.fragments.Registration.NameFragment;
 import com.example.miami.fragments.Registration.DateBirthFragment;
 import com.example.miami.fragments.Registration.GenderPickerFragment;
+import com.example.miami.fragments.Registration.DetailUserInfoFragment;
+import com.example.miami.fragments.Registration.PhotoFragment;
 
 import com.example.miami.fragments.Registration.HeaderRegistrationFragment;
 import com.example.miami.fragments.Registration.IdentityFragment;
 
-
-import android.app.ActionBar;
 import android.os.Bundle;
 
-import android.view.View;
-import android.widget.Button;
-
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.widget.EditText;
 
 import org.w3c.dom.Text;
 
@@ -46,7 +39,8 @@ public class RegistrationActivity extends AppCompatActivity implements DateBirth
     @Override
     public void onClickedGender() {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.registration_view, new GenderPickerFragment(), null)
+                .replace(R.id.fragment_registration, new GenderPickerFragment(), null)
+                .add(R.id.fragment_registration, new HeaderRegistrationFragment(), null)
                 .commit();
     }
 }
