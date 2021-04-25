@@ -78,7 +78,7 @@ public class IdentityFragment extends Fragment {
             }
         });
 
-        final EditText phoneInput = (EditText) view.findViewById(R.id.phone_input);
+        final EditText phoneInput = view.findViewById(R.id.phone_input);
         phoneInput.addTextChangedListener(new TextWatcher() {
             private String lastChar = "";
 

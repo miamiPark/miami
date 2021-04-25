@@ -140,4 +140,10 @@ public class RegistrationData {
     public void setSex(String sex) {
         mSex = sex;
     }
+
+    public void setDetailInfo(String job, String university, String aboutMe) {
+        mJob = job;
+        mEducation = university;
+        mAboutMe = aboutMe;
+    }
 }

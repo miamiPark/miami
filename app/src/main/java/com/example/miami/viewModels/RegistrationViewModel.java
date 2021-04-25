@@ -64,4 +64,9 @@ public class RegistrationViewModel extends AndroidViewModel {
         mRegistrationData.setSex(sex);
         mRegistrationState.postValue(RegistrationState.GENDER_SUCCESS);
     }
+
+    public void detailInfo(String job, String university, String aboutMe) {
+        mRegistrationData.setDetailInfo(job, university, aboutMe);
+        mRegistrationState.postValue(RegistrationState.DETAIL_INFO_SUCCESS);
+    }
 }
