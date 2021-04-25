@@ -1,73 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.Registration.DateBirthFragment">
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".fragments.Registration.NameFragment">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="50dp"
-        android:textSize="20sp"
-        android:text="@string/enter_gender" />
+        android:layout_width="wrap_content"
+        android:layout_height="54dp"
+        android:layout_marginBottom="34dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="@string/about_you"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
 
     <TextView
-        android:id="@+id/currentDateTime"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:layout_gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/timeButton"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        android:layout_marginBottom="34dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="Я..."
+        android:textColor="@color/black"
+        android:textSize="25sp" />
 
     <info.hoang8f.android.segmented.SegmentedGroup
         xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
         android:id="@+id/segmented2"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="20dp"
         android:layout_gravity="center"
         android:orientation="horizontal"
-        android:background="@color/pink"
-        segmentedgroup:sc_border_width="2dp"
-        segmentedgroup:sc_tint_color="@color/white"
-        segmentedgroup:sc_checked_text_color="@color/blue"
-        segmentedgroup:sc_corner_radius="5dp">
+        android:layout_width="260dp"
+        android:background="@color/white"
+
+        segmentedgroup:sc_border_width="4dp"
+        segmentedgroup:sc_tint_color="@color/pink"
+        segmentedgroup:sc_checked_text_color="@color/white"
+        >
 
         <RadioButton
             android:id="@+id/button21"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:fontFamily="@font/montserrat_regular"
             android:text="Женщина"
+            android:textSize="17sp"
+
             style="@style/RadioButton" />
 
         <RadioButton
             android:id="@+id/button22"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:fontFamily="@font/montserrat_regular"
             android:text="Мужчина"
+            android:textSize="17sp"
             style="@style/RadioButton" />
     </info.hoang8f.android.segmented.SegmentedGroup>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="20dp"
-        >
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:text="@string/continue_button"
-            android:background="@color/white"
-            android:layout_weight="1"
-            />
-    </LinearLayout>
+        android:background="@color/blue"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="@string/continue_button"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 
-</FrameLayout>
+</LinearLayout>

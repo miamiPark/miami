@@ -4,9 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activities.RegistrationActivity">
     <FrameLayout
-        android:id="@+id/fragment_view"
+        android:id="@+id/registration_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <FrameLayout
+        android:id="@+id/fragment_registration"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />

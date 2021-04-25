@@ -1,25 +1,23 @@
 package com.example.miami.fragments.Registration;
 
-import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.miami.R;
 
-public class NameFragment extends Fragment implements View.OnClickListener {
+public class DetailUserInfoFragment extends Fragment implements View.OnClickListener {
 
-    public NameFragment() {
+    public DetailUserInfoFragment() {
         super();
     }
 
-    public static NameFragment newInstance() {
-        return new NameFragment();
+    public static DetailUserInfoFragment newInstance() {
+        return new DetailUserInfoFragment();
     }
 
     @Override

@@ -1,84 +1,87 @@
 package com.example.miami.fragments.Registration;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
+import androidx.fragment.app.DialogFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.text.format.DateUtils;
 import android.app.DatePickerDialog;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import com.example.miami.R;
 
-public class DateBirthFragment extends Fragment {
-
-    TextView currentDateTime;
-    Calendar dateAndTime=Calendar.getInstance();
-
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class DateBirthFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener, View.OnClickListener {
 
     public DateBirthFragment() {
         super();
     }
 
-    public static DateBirthFragment newInstance(String param1, String param2) {
-        DateBirthFragment fragment = new DateBirthFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public static DateBirthFragment newInstance() {
+        return new DateBirthFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    }
+
+    public interface OnClickNextButtonListener {
+        void onClickedGender();
+    }
+
+    private DateBirthFragment.OnClickNextButtonListener mListener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if (context instanceof DateBirthFragment.OnClickNextButtonListener) {
+            mListener = (DateBirthFragment.OnClickNextButtonListener) context;
+        } else {
+            throw new ClassCastException(context.toString()
+                    + " must implement DateBirthFragment.OnClickNextButtonListener");
         }
     }
 
-    private void setInitialDateTime() {
-
-        currentDateTime.setText(DateUtils.formatDateTime(getActivity(),
-                dateAndTime.getTimeInMillis(),
-                DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR
-                        | DateUtils.FORMAT_SHOW_TIME));
+    @Override
+    public void onClick(View v) {
+        mListener.onClickedGender();
     }
-
-    public void setDate(View v) {
-        new DatePickerDialog(getActivity(), d,
-                dateAndTime.get(Calendar.YEAR),
-                dateAndTime.get(Calendar.MONTH),
-                dateAndTime.get(Calendar.DAY_OF_MONTH))
-                .show();
-    }
-
-    DatePickerDialog.OnDateSetListener d=new DatePickerDialog.OnDateSetListener() {
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            dateAndTime.set(Calendar.YEAR, year);
-            dateAndTime.set(Calendar.MONTH, monthOfYear);
-            dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            setInitialDateTime();
-        }
-    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_date_birth, container, false);
+        View view = inflater.inflate(R.layout.fragment_date_birth, container, false);
+        view.findViewById(R.id.nextButton).setOnClickListener(this);
+        return view;
+
+    }
+
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+
+        return new DatePickerDialog(getActivity(), this, year, month, day);
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int day) {
+        Calendar c = Calendar.getInstance();
+        c.set(year, month, day);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = sdf.format(c.getTime());
     }
 }

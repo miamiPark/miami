@@ -1,39 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".fragments.Registration.NameFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="34dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="@string/about_you"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginBottom="30dp"
         android:textSize="20sp"
+        android:textStyle="normal"
         android:text="@string/enter_name" />
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="match_parent"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:hint="@string/enter_name"
-        android:inputType="textPersonName" />
-
-    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_gravity="bottom"
         android:layout_marginBottom="20dp"
-        >
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:text="@string/continue_button"
-            android:background="@color/white"
-            android:layout_weight="1"
-            />
-    </LinearLayout>
+        android:autofillHints=""
+        android:background="#f4f4f5"
+        android:fontFamily="@font/montserrat_light"
+        android:gravity="center"
+        android:hint="@string/enter_name"
+        android:paddingVertical="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="#b0b0b1"
+        android:textSize="20sp" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="@string/continue_button"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+</LinearLayout>
