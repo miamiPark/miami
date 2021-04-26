@@ -12,4 +12,5 @@
     <string name="auth">Авторизация</string>
     <string name="input_number_pass">Введите номер телефона и пароль:</string>
     <string name="coming">Войти</string>
+    <string name="sorry">К сожаленю, пользователи закончились, зовите своих друзей,и такого больше не повторится</string>
 </resources>
