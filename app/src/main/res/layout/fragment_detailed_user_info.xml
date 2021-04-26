@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".fragments.Registration.NameFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="@string/about_you"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="34dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="Поподробнее."
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+    <TextView
+        android:layout_width="322dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:gravity="start"
+        android:fontFamily="@font/montserrat_light"
+        android:text="Я работаю"
+        android:paddingStart="10dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="normal" />
+
+    <EditText
+        android:id="@+id/job_input"
+        android:layout_width="322dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:autofillHints=""
+        android:background="@drawable/rounded_edittext"
+        android:fontFamily="@font/montserrat_light"
+        android:gravity="start"
+        android:hint="Тренер по плаванию"
+        android:paddingVertical="10dp"
+        android:paddingLeft="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="#b0b0b1"
+        android:textSize="20sp" />
+
+<!--    <RadioGroup-->
+<!--        android:layout_height="70dp"-->
+<!--        android:layout_width="322dp"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        <RadioButton-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:button="@null"-->
+<!--            android:buttonTint="@color/pink"-->
+<!--            android:checked="true"-->
+<!--            android:drawableBottom="@android:drawable/btn_radio"-->
+<!--            android:gravity="center"-->
+<!--            android:text="Учусь" />-->
+
+<!--        <RadioButton-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:button="@null"-->
+<!--            android:drawableBottom="@android:drawable/btn_radio"-->
+<!--            android:gravity="center"-->
+<!--            android:text="Окончил" />-->
+
+<!--        <RadioButton-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:button="@null"-->
+<!--            android:drawableBottom="@android:drawable/btn_radio"-->
+<!--            android:gravity="center"-->
+<!--            android:text="Нет" />-->
+
+<!--    </RadioGroup>-->
+
+    <com.skydoves.powerspinner.PowerSpinnerView
+        android:id="@+id/university_input"
+        android:layout_width="322dp"
+        android:layout_height="wrap_content"
+        android:background="@color/light_gray"
+        android:gravity="start"
+        android:hint="Выбрать место учебы"
+        android:padding="10dp"
+        android:textColor="@color/dark_gray"
+        android:textColorHint="@color/black"
+        android:textSize="20sp"
+        android:fontFamily="@font/montserrat_light"
+        android:layout_marginBottom="20dp"
+
+        app:spinner_arrow_gravity="end"
+        app:spinner_arrow_padding="8dp"
+        app:spinner_arrow_tint="@color/black"
+        app:spinner_divider_color="@color/black"
+        app:spinner_divider_show="true"
+        app:spinner_divider_size="0.4dp"
+        app:spinner_item_array="@array/universities"
+        app:spinner_popup_animation="dropdown"
+        app:spinner_popup_background="@color/light_gray"
+        app:spinner_popup_elevation="14dp" />
+
+
+    <TextView
+        android:layout_width="322dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:gravity="left"
+        android:fontFamily="@font/montserrat_light"
+        android:text="Обо мне"
+        android:paddingLeft="10dp"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textStyle="normal" />
+
+    <EditText
+        android:id="@+id/about_me_input"
+        android:layout_width="322dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="20dp"
+        android:autofillHints=""
+        android:background="@drawable/rounded_edittext"
+        android:fontFamily="@font/montserrat_light"
+        android:gravity="left"
+        android:hint="Пару слов..."
+        android:paddingVertical="10dp"
+        android:paddingLeft="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="#b0b0b1"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/detail_info_next"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="@string/continue_button"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+</LinearLayout>

@@ -30,7 +30,6 @@
             android:src="@drawable/ic_camera"
             />
 
-
     <Button
         android:id="@+id/photo_button"
         android:layout_width="240dp"
