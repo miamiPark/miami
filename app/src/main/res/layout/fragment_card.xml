@@ -6,16 +6,67 @@
     android:layout_gravity="center"
     tools:context=".fragments.Feed.CardFragment">
 
-    <ImageView
-        android:id="@+id/icon"
+    <RelativeLayout
         android:layout_width="350dp"
         android:layout_height="480dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_gravity="center"
-        android:background="@color/white"
-        android:scaleType="centerCrop"
-        android:src="@drawable/test_olya" />
+        >
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:scaleType="centerCrop"
+            android:src="@drawable/test_olya" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="10dp"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Olya, 20"
+                android:fontFamily="@font/montserrat_regular"
+                android:textSize="45sp"
+                android:maxLines="1"
+                android:maxLength="15"
+                android:textColor="@color/white"
+                />
+            <TextView
+                android:id="@+id/education"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Baumanka"
+                android:fontFamily="@font/montserrat_regular"
+                android:textSize="30sp"
+                android:maxLines="1"
+                android:maxLength="10"
+                android:textColor="@color/white"
+                />
+            <TextView
+                android:id="@+id/aboutMe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lova boyz"
+                android:fontFamily="@font/montserrat_regular"
+                android:textSize="30sp"
+                android:maxLines="1"
+                android:maxLength="10"
+                android:textColor="@color/white"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
     <LinearLayout
         android:layout_height="40dp"
         android:layout_width="match_parent"
@@ -24,6 +75,7 @@
         android:layout_marginBottom="20dp"
         >
         <ImageButton
+            android:id="@+id/dislike"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:src="@drawable/ic_cancel"
@@ -31,6 +83,7 @@
             android:layout_weight="1"
             />
         <ImageButton
+            android:id="@+id/like"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:src="@drawable/ic_like"

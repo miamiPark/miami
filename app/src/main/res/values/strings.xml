@@ -8,4 +8,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="best_photos">Выберите лучшие фотографии</string>
     <string name="end_button">Завершить!</string>
+    <string name="auth">Авторизация</string>
+    <string name="input_number_pass">Введите номер телефона и пароль:</string>
+    <string name="coming">Войти</string>
+    <string name="sorry">К сожаленю, пользователи закончились, зовите своих друзей,и такого больше не повторится</string>
 </resources>

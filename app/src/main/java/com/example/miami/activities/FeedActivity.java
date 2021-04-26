@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.miami.ApplicationModified;
 import com.example.miami.R;
 import com.example.miami.fragments.Feed.CardFragment;
 import com.example.miami.fragments.Feed.HeaderFragment;
+import com.example.miami.viewModels.FeedViewModel;
 
 public class FeedActivity extends AppCompatActivity {
 
@@ -22,5 +24,6 @@ public class FeedActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_view, new CardFragment(), null)
                 .commit();
+
     }
 }
