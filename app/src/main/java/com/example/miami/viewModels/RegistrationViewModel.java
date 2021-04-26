@@ -91,7 +91,7 @@ public class RegistrationViewModel extends AndroidViewModel {
             public void onChanged(RegistrationProgress registrationProgress) {
                 if (registrationProgress == RegistrationProgress.AVATAR_SUCCESS) {
                     String url = RegistrationRepo.getInstance(getApplication()).getUrl();
-                    String[] linkImages = new String[]{url};
+                    String[] linkImages = new String[]{url.replaceAll("\"", "")};
 
                     mRegistrationData.setLinkImages(linkImages);
 
