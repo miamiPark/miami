@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.miami.ApplicationModified;
 import com.example.miami.R;
 import com.example.miami.activities.FeedActivity;
 import com.example.miami.models.authorization.LoginState;
@@ -156,6 +157,7 @@ public class AuthorizationFragment extends Fragment {
                 loginButton.setEnabled(false);
             } else if (loginState == LoginState.SUCCESS) {
                 Toast.makeText(getContext(), "Success login", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),  ApplicationModified.from(getContext()).getCookie(), Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getActivity(), FeedActivity.class);
                 startActivity(intent);
             } else {

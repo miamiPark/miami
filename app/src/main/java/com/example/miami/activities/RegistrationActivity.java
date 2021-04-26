@@ -78,7 +78,7 @@ public class RegistrationActivity extends AppCompatActivity
 
                 }
                 else{
-                    Toast.makeText(getApplicationContext(), "Permission Denied", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Значит не регистрируйся!", Toast.LENGTH_LONG).show();
                 }
             }
         }
