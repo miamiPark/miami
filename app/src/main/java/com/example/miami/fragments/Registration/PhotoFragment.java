@@ -14,16 +14,19 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.miami.R;
+import com.example.miami.models.registration.RegistrationState;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -119,6 +122,29 @@ public class PhotoFragment extends Fragment {
                     Toast.makeText(getContext(), "Fuck you!", Toast.LENGTH_LONG).show();
                 }
                 break;
+        }
+    }
+
+    public class PhotoObserver implements Observer<RegistrationState> {
+        private final Button mButton;
+
+        public PhotoObserver(Button button) {
+            mButton = button;
+        }
+
+        @Override
+        public void onChanged(RegistrationState registrationState) {
+            if (registrationState == RegistrationState.FAILED) {
+
+            } else if (registrationState == RegistrationState.ERROR) {
+                mButton.setEnabled(true);
+            } else if (registrationState == RegistrationState.IN_PROGRESS) {
+                mButton.setEnabled(false);
+            } else if (registrationState == RegistrationState.SUCCESS) {
+                // рисовать
+            } else {
+
+            }
         }
     }
 }
