@@ -10,6 +10,7 @@ public enum RegistrationState {
     DATE_SUCCESS,
     GENDER_SUCCESS,
     DETAIL_INFO_SUCCESS,
+    AVATAR_SUCCESS,
     SUCCESS,
     FAILED;
 }

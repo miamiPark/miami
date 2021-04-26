@@ -12,9 +12,12 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.provider.MediaStore;
 import android.util.Log;
@@ -27,6 +30,7 @@ import android.widget.Toast;
 
 import com.example.miami.R;
 import com.example.miami.models.registration.RegistrationState;
+import com.example.miami.viewModels.RegistrationViewModel;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -42,11 +46,16 @@ import static android.app.Activity.RESULT_OK;
  * create an instance of this fragment.
  */
 public class PhotoFragment extends Fragment {
+    private RegistrationViewModel mRegistrationViewModel;
+//    private MediatorLiveData<RegistrationState> mRegistrationState = new RegistrationState<>();
+
     private static final int RESULT_LOAD_IMAGE = 1;
     private ImageView imageView;
+    private String mPath;
 
     public PhotoFragment() {
         super();
+        mPath = "";
     }
 
     public static PhotoFragment newInstance() {
@@ -81,8 +90,31 @@ public class PhotoFragment extends Fragment {
             }
         });
 
-
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        mRegistrationViewModel = new ViewModelProvider(requireActivity()).get(RegistrationViewModel.class);
+
+        Button buttonReg = view.findViewById(R.id.photo_button);
+
+        mRegistrationViewModel.getProgress()
+                .observe(getViewLifecycleOwner(), new PhotoObserver(buttonReg));
+
+        buttonReg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mPath.equals("")) {
+                    Toast.makeText(getContext(), "ХАХАХА пас ноль", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                mRegistrationViewModel.uploadAvatar(mPath);
+            }
+        });
     }
 
     @Override
@@ -91,7 +123,7 @@ public class PhotoFragment extends Fragment {
 
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
             Uri selectedImage = data.getData();
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
             Cursor cursor = requireActivity().getContentResolver().query(selectedImage,
                     filePathColumn, null, null, null);
@@ -104,14 +136,13 @@ public class PhotoFragment extends Fragment {
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
             imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-            Log.w("path", picturePath);
+            mPath = picturePath;
         }
     }
 
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults)
-    {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         switch (requestCode) {
             case RESULT_LOAD_IMAGE:
                 // If request is cancelled, the result arrays are empty.
@@ -135,15 +166,19 @@ public class PhotoFragment extends Fragment {
         @Override
         public void onChanged(RegistrationState registrationState) {
             if (registrationState == RegistrationState.FAILED) {
-
+                Toast.makeText(getContext(), "ХАХА ФЭЙЛЕД", Toast.LENGTH_LONG).show();
+                mButton.setEnabled(true);
             } else if (registrationState == RegistrationState.ERROR) {
+                Toast.makeText(getContext(), "ХАХА АШИБКА", Toast.LENGTH_LONG).show();
                 mButton.setEnabled(true);
             } else if (registrationState == RegistrationState.IN_PROGRESS) {
+                Toast.makeText(getContext(), "ХАХА ПРАГРЕС", Toast.LENGTH_LONG).show();
                 mButton.setEnabled(false);
-            } else if (registrationState == RegistrationState.SUCCESS) {
+            } else if (registrationState == RegistrationState.AVATAR_SUCCESS) {
                 // рисовать
+                Toast.makeText(getContext(), "ХАХА СУКСЕС", Toast.LENGTH_LONG).show();
             } else {
-
+                Toast.makeText(getContext(), "ХАХА ЧИВО", Toast.LENGTH_LONG).show();
             }
         }
     }
