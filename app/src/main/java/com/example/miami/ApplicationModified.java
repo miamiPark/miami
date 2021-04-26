@@ -28,6 +28,7 @@ public class ApplicationModified extends Application {
         authApi = new AuthApi();
         feedApi = new FeedApi();
 
+        feedApi.setContext(this);
 
         mAuthRepo = new AuthRepo(authApi);
         mFeedRepo = new FeedRepo(feedApi);

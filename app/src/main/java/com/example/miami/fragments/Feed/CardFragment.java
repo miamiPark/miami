@@ -14,10 +14,12 @@ import android.widget.Toast;
 
 import com.example.miami.R;
 import com.example.miami.models.feed.UserFeed;
+import com.example.miami.viewModels.FeedViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,6 +68,8 @@ public class CardFragment extends Fragment {
         }
     }
 
+    private FeedViewModel feedViewModel;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -74,23 +78,32 @@ public class CardFragment extends Fragment {
         Observer<List<UserFeed>> observer = new Observer<List<UserFeed>>() {
             @Override
             public void onChanged(List<UserFeed> users) {
-                ArrayList<UserFeed> userFeeds = (ArrayList<UserFeed>) users;
-                if (userFeeds.get(userFeeds.size() - 1).id == -1) {
-                    Toast.makeText(getContext(), "Ошибка при загрузке данных, попробуйте позже", Toast.LENGTH_LONG).show();
-                } else {
-                    UserFeed user = userFeeds.get(0);
-                    if (user.linkImages[0] != "") {
-                        ImageView image = view.findViewById(R.id.icon);
-                        image.setImageURI(Uri.parse(user.linkImages[0]));
+                if (!users.isEmpty()) {
+                    ArrayList<UserFeed> userFeeds = (ArrayList<UserFeed>) users;
+                    if (userFeeds.get(userFeeds.size() - 1).id == -1) {
+                        Toast.makeText(getContext(), "Ошибка при загрузке данных, попробуйте позже", Toast.LENGTH_LONG).show();
+                    } else {
+                        UserFeed user = userFeeds.get(0);
+                        if (user.linkImages[0] != "") {
+                            ImageView image = view.findViewById(R.id.icon);
+                            image.setImageURI(Uri.parse(user.linkImages[0]));
+                        }
+                        TextView name = view.findViewById(R.id.name);
+                        String res = user.name + String.valueOf(user.date_birth);
+                        name.setText(res);
+
+                        TextView education = view.findViewById(R.id.education);
+                        education.setText(String.valueOf(user.education));
                     }
-                    TextView name = view.findViewById(R.id.name);
-                    String res = user.name + user.date_birth;
-                    name.setText(user.name + String.valueOf(user.date_birth));
                 }
+
             }
         };
 
+        feedViewModel = new ViewModelProvider(getActivity())
+                        .get(FeedViewModel.class);
 
+        feedViewModel.getFeed().observe(getViewLifecycleOwner(), observer);
 
         return view;
     }

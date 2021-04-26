@@ -44,9 +44,11 @@ public class FeedRepo {
         feedApi.getUsersApi().getFeed().enqueue(new Callback<List<UsersApi.User>>() {
             @Override
             public void onResponse(Call<List<UsersApi.User>> call, Response<List<UsersApi.User>> response) {
+                    Log.w("response", response.toString());
                     if(response.isSuccessful() && response.body() != null) {
                         mUsers.postValue(transform(response.body()));
                     } else {
+                        Log.w("response", "ya tut");
                         UserFeed user = new UserFeed();
                         user.id = -1;
                         List<UserFeed> result = new ArrayList<>();
