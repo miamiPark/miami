@@ -29,6 +29,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.Objects;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -38,13 +39,15 @@ import static android.app.Activity.RESULT_OK;
  * create an instance of this fragment.
  */
 public class PhotoFragment extends Fragment {
+    private static final int RESULT_LOAD_IMAGE = 1;
+    private ImageView imageView;
+
     public PhotoFragment() {
         super();
     }
 
     public static PhotoFragment newInstance() {
-        PhotoFragment fragment = new PhotoFragment();
-        return fragment;
+        return new PhotoFragment();
     }
 
     @Override
@@ -63,8 +66,8 @@ public class PhotoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 try {
-                    if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, RESULT_LOAD_IMAGE);
+                    if (ActivityCompat.checkSelfPermission(requireActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, RESULT_LOAD_IMAGE);
                     } else {
                         Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                         startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
@@ -96,9 +99,6 @@ public class PhotoFragment extends Fragment {
             cursor.close();
 
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-
-
-
 
             imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
             Log.w("path", picturePath);
