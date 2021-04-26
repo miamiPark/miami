@@ -41,12 +41,13 @@ public class FeedRepo {
     }
 
     public LiveData<List<UserFeed>> getFeed() {
-        feedApi.getUsersApi().getFeed().enqueue(new Callback<List<UsersApi.User>>() {
+        feedApi.getUsersApi().getFeed().enqueue(new Callback<UsersApi.Users>() {
             @Override
-            public void onResponse(Call<List<UsersApi.User>> call, Response<List<UsersApi.User>> response) {
+            public void onResponse(Call<UsersApi.Users> call, Response<UsersApi.Users> response) {
                     Log.w("response", response.toString());
+                    Log.w("response", response.body().toString());
                     if(response.isSuccessful() && response.body() != null) {
-                        mUsers.postValue(transform(response.body()));
+                        mUsers.postValue(transform(response.body().user_feed));
                     } else {
                         Log.w("response", "ya tut");
                         UserFeed user = new UserFeed();
@@ -58,7 +59,7 @@ public class FeedRepo {
             }
 
             @Override
-            public void onFailure(Call<List<UsersApi.User>> call, Throwable t) {
+            public void onFailure(Call<UsersApi.Users> call, Throwable t) {
                 Log.e("LessonRepo", "Failed to load", t);
                 UserFeed user = new UserFeed();
                 user.id = -1;

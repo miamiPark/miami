@@ -21,6 +21,17 @@ public interface UsersApi {
         public String filter;
     }
 
+    class Users {
+        public List<User> user_feed;
+
+//        public List<User> getUsers_feed() {
+//            return users_feed;
+//        }
+//        public void setUsers_feed(List<User> users) {
+//            this.users_feed = users;
+//        }
+    }
+
     @GET("/api/v1/feed")
-    Call<List<User>> getFeed();
+    Call<Users> getFeed();
 }
