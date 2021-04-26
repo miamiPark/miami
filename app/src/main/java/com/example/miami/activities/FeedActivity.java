@@ -26,4 +26,9 @@ public class FeedActivity extends AppCompatActivity {
                 .commit();
 
     }
+
+    @Override
+    public void onBackPressed() {
+        // do nothing because you don't want them to leave when it's pressed
+    }
 }
