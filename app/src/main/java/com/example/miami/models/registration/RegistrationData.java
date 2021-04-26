@@ -24,23 +24,6 @@ public class RegistrationData {
 
     public RegistrationData() {}
 
-//    public RegistrationData(String telephone, String password, String repeatPassword, String name,
-//                            int day, int month, int year, String sex, String job, String education,
-//                            String aboutMe, String[] linkImages) {
-//        mTelephone = telephone;
-//        mPassword = password;
-//        mRepeatPassword = repeatPassword;
-//        mName = name;
-//        mDay = day;
-//        mMonth = month;
-//        mYear = year;
-//        mSex = sex;
-//        mJob = job;
-//        mEducation = education;
-//        mAboutMe = aboutMe;
-//        mLinkImages = linkImages;
-//    }
-
     public String getTelephone() {
         return mTelephone;
     }
@@ -145,5 +128,9 @@ public class RegistrationData {
         mJob = job;
         mEducation = university;
         mAboutMe = aboutMe;
+    }
+
+    public void setLinkImages(String[] images) {
+        mLinkImages = images;
     }
 }

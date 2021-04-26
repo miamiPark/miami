@@ -166,7 +166,7 @@ public class PhotoFragment extends Fragment {
         @Override
         public void onChanged(RegistrationState registrationState) {
             if (registrationState == RegistrationState.FAILED) {
-                Toast.makeText(getContext(), "ХАХА ФЭЙЛЕД", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Неожиданные проблемы", Toast.LENGTH_LONG).show();
                 mButton.setEnabled(true);
             } else if (registrationState == RegistrationState.ERROR) {
                 Toast.makeText(getContext(), "ХАХА АШИБКА", Toast.LENGTH_LONG).show();
@@ -176,9 +176,9 @@ public class PhotoFragment extends Fragment {
                 mButton.setEnabled(false);
             } else if (registrationState == RegistrationState.AVATAR_SUCCESS) {
                 // рисовать
-                Toast.makeText(getContext(), "ХАХА СУКСЕС", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(getContext(), "ХАХА ЧИВО", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "ХАХА АВТАР СУКЕСС", Toast.LENGTH_LONG).show();
+            } else if (registrationState == RegistrationState.SUCCESS) {
+                Toast.makeText(getContext(), "ХАХА СУКЕСС", Toast.LENGTH_SHORT).show();
             }
         }
     }

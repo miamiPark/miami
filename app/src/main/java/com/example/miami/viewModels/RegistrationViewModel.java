@@ -1,6 +1,7 @@
 package com.example.miami.viewModels;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -15,7 +16,7 @@ import com.example.miami.repository.RegistrationRepo;
 
 public class RegistrationViewModel extends AndroidViewModel {
 
-    private final RegistrationData mRegistrationData = new RegistrationData();
+    private static final RegistrationData mRegistrationData = new RegistrationData();
     private final MediatorLiveData<RegistrationState> mRegistrationState = new MediatorLiveData<>();
 
     public RegistrationViewModel(@NonNull Application application) {
@@ -37,7 +38,6 @@ public class RegistrationViewModel extends AndroidViewModel {
         }
 
         mRegistrationState.postValue(RegistrationState.IDENTITY_SUCCESS);
-
         // добавить фетч на номер телефона
     }
 
@@ -90,7 +90,46 @@ public class RegistrationViewModel extends AndroidViewModel {
             @Override
             public void onChanged(RegistrationProgress registrationProgress) {
                 if (registrationProgress == RegistrationProgress.AVATAR_SUCCESS) {
+                    String url = RegistrationRepo.getInstance(getApplication()).getUrl();
+                    String[] linkImages = new String[]{url};
+
+                    mRegistrationData.setLinkImages(linkImages);
+
                     mRegistrationState.postValue(RegistrationState.AVATAR_SUCCESS);
+                    mRegistrationState.removeSource(progressLiveData);
+
+                    requestRegistration();
+                } else if (registrationProgress == RegistrationProgress.FAILED) {
+                    mRegistrationState.postValue(RegistrationState.FAILED);
+                    mRegistrationState.removeSource(progressLiveData);
+                }
+            }
+        });
+    }
+
+    private void requestRegistration() {
+        mRegistrationState.postValue(RegistrationState.IN_PROGRESS);
+        final LiveData<RegistrationProgress> progressLiveData = RegistrationRepo
+                .getInstance(getApplication())
+                .registration(
+                        mRegistrationData.getTelephone(),
+                        mRegistrationData.getPassword(),
+                        mRegistrationData.getName(),
+                        Integer.toString(mRegistrationData.getDay()),
+                        Integer.toString(mRegistrationData.getMonth()),
+                        Integer.toString(mRegistrationData.getYear()),
+                        mRegistrationData.getSex(),
+                        mRegistrationData.getJob(),
+                        mRegistrationData.getEducation(),
+                        mRegistrationData.getAboutMe(),
+                        mRegistrationData.getLinkImages()
+                );
+
+        mRegistrationState.addSource(progressLiveData, new Observer<RegistrationProgress>() {
+            @Override
+            public void onChanged(RegistrationProgress registrationProgress) {
+                if (registrationProgress == RegistrationProgress.SUCCESS) {
+                    mRegistrationState.postValue(RegistrationState.SUCCESS);
                     mRegistrationState.removeSource(progressLiveData);
                 } else if (registrationProgress == RegistrationProgress.FAILED) {
                     mRegistrationState.postValue(RegistrationState.FAILED);

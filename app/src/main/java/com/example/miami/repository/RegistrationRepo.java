@@ -12,8 +12,10 @@ import com.example.miami.ApplicationModified;
 import com.example.miami.models.authorization.AuthProgress;
 import com.example.miami.models.registration.RegistrationProgress;
 import com.example.miami.network.RegistrationApi;
+import com.example.miami.network.RegistrationRequestApi;
 
 import java.io.File;
+import java.io.IOException;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -32,10 +34,59 @@ public class RegistrationRepo {
 
     private String mCurrentPath;
     private MutableLiveData<RegistrationProgress> mRegistrationProgress;
+    private String mUrl;
+    private String mCurrentUser;
 
     public static RegistrationRepo getInstance(Context context) {
         return ApplicationModified.from(context).getRegistrationRepo();
     }
+
+    public LiveData<RegistrationProgress> registration(String telephone, String password, String name,
+                                                       String day, String month, String year,
+                                                       String sex, String job, String education,
+                                                       String aboutMe, String[] linkImages) {
+        if (TextUtils.equals(telephone, mCurrentUser) && mRegistrationProgress.getValue() == RegistrationProgress.IN_PROGRESS) {
+            return mRegistrationProgress;
+        } else if (!TextUtils.equals(telephone, mCurrentUser) && mRegistrationProgress != null) {
+            mRegistrationProgress.postValue(RegistrationProgress.FAILED);
+        }
+        mCurrentUser = telephone;
+        mRegistrationProgress = new MutableLiveData<>();
+        registration(
+                mRegistrationProgress, telephone, password,
+                name, day, month, year, sex, job, education,
+                aboutMe, linkImages
+        );
+        return mRegistrationProgress;
+    }
+
+    public void registration(final MutableLiveData<RegistrationProgress> progress,
+                             String telephone, String password, String name,
+                             String day, String month, String year,
+                             String sex, String job, String education,
+                             String aboutMe, String[] linkImages) {
+        mRegistrationApi
+                .getRegistrationRequestApi()
+                .registration(new RegistrationRequestApi.RegistrationBody(
+                        telephone, password, name, day, month, year, sex, job, education, aboutMe, linkImages
+                ))
+                .enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()) {
+                            progress.postValue(RegistrationProgress.SUCCESS);
+                        } else {
+                            progress.postValue(RegistrationProgress.FAILED);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        progress.postValue(RegistrationProgress.FAILED);
+                    }
+                });
+    }
+
 
     public LiveData<RegistrationProgress> uploadAvatar(String path) {
         if (TextUtils.equals(path, mCurrentPath) && mRegistrationProgress.getValue() == RegistrationProgress.IN_PROGRESS) {
@@ -52,25 +103,32 @@ public class RegistrationRepo {
     private void uploadAvatar(final MutableLiveData<RegistrationProgress> progress, @NonNull final String path) {
         File file = new File(path);
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-        MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("photo", file.getName(), requestFile);
 
         mRegistrationApi.getUploadAvatarApi().uploadAvatar(body).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-                    progress.postValue(RegistrationProgress.AVATAR_SUCCESS);
+                    try {
+                        mUrl = response.body().string();
+                        progress.postValue(RegistrationProgress.AVATAR_SUCCESS);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 } else {
-                    Log.w("response", response.toString());
                     progress.postValue(RegistrationProgress.FAILED);
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                Log.w("failure ваще", t.printStackTrace(););
                 t.printStackTrace();
                 progress.postValue(RegistrationProgress.FAILED);
             }
         });
+    }
+
+    public String getUrl() {
+        return mUrl;
     }
 }
