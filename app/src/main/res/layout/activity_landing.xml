@@ -76,7 +76,7 @@
                     android:id="@+id/button_sign_up"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="Sing up"
+                    android:text="Sign up"
                     android:fontFamily="@font/montserrat_semibold"
                     android:background="@color/pink"
                     android:textColor="@color/white"
