@@ -37,7 +37,7 @@
                 android:fontFamily="@font/montserrat_regular"
                 android:textSize="45sp"
                 android:maxLines="1"
-                android:maxLength="10"
+                android:maxLength="15"
                 android:textColor="@color/white"
                 />
             <TextView
@@ -75,6 +75,7 @@
         android:layout_marginBottom="20dp"
         >
         <ImageButton
+            android:id="@+id/dislike"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:src="@drawable/ic_cancel"
@@ -82,6 +83,7 @@
             android:layout_weight="1"
             />
         <ImageButton
+            android:id="@+id/like"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:src="@drawable/ic_like"

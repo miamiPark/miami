@@ -60,7 +60,7 @@ public class FeedRepo {
 
             @Override
             public void onFailure(Call<UsersApi.Users> call, Throwable t) {
-                Log.e("LessonRepo", "Failed to load", t);
+                Log.e("FeedRepo", "Failed to load", t);
                 UserFeed user = new UserFeed();
                 user.id = -1;
                 List<UserFeed> result = new ArrayList<>();
@@ -78,7 +78,7 @@ public class FeedRepo {
             try {
                 UserFeed userFeed = map(user);
                 result.add(userFeed);
-                Log.e("LessonRepo", "Loaded " + userFeed.name + " #" + userFeed.id);
+                Log.e("FeedRepo", "Loaded " + userFeed.name + " #" + userFeed.id);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
