@@ -1,4 +1,4 @@
-package com.example.miami.fragments.Like;
+package com.example.miami.fragments.Match;
 
 import android.os.Bundle;
 
@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.miami.R;
 
-public class LikeFragment extends Fragment {
+public class MatchFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -18,12 +18,12 @@ public class LikeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public LikeFragment() {
+    public MatchFragment() {
         super();
     }
 
-    public static LikeFragment newInstance(String param1, String param2) {
-        LikeFragment fragment = new LikeFragment();
+    public static MatchFragment newInstance(String param1, String param2) {
+        MatchFragment fragment = new MatchFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
