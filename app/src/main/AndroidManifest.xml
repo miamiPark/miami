@@ -17,7 +17,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MiAmi.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.MatchActivity"></activity>
         <activity
             android:name=".activities.AuthorizationActivity"
             android:screenOrientation="portrait" />

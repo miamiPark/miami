@@ -1,4 +1,4 @@
-package com.example.miami.fragments.Match;
+package com.example.miami.fragments.Feed;
 
 import android.os.Bundle;
 

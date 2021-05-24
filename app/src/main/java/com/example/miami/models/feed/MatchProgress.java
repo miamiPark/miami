@@ -1,4 +1,4 @@
-package com.example.miami.models.match;
+package com.example.miami.models.feed;
 
 public enum MatchProgress {
     IN_PROGRESS,

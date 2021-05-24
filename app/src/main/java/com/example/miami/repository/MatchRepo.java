@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.miami.models.match.MatchProgress;
+import com.example.miami.models.feed.UserFeed;
 import com.example.miami.network.MatchApi;
 import com.example.miami.network.MatchRequestApi;
 
@@ -16,18 +16,18 @@ import retrofit2.Response;
 
 public class MatchRepo {
     private final MatchApi mMatchApi;
-    private MutableLiveData<MatchProgress> mMatchProgress;
+    private MutableLiveData<UserFeed.MatchProgress> mMatchProgress;
     private String mCurrentUser;
 
     public MatchRepo(MatchApi match) {
         mMatchApi = match;
     }
 
-    public LiveData<MatchProgress> match(int id1, int id2, String msg, String t) {
-        if (TextUtils.equals(String.valueOf(id1), mCurrentUser) && mMatchProgress.getValue() == MatchProgress.IN_PROGRESS) {
+    public LiveData<UserFeed.MatchProgress> match(int id1, int id2, String msg, String t) {
+        if (TextUtils.equals(String.valueOf(id1), mCurrentUser) && mMatchProgress.getValue() == UserFeed.MatchProgress.IN_PROGRESS) {
             return mMatchProgress;
         } else if (!TextUtils.equals(String.valueOf(id1), mCurrentUser) && mMatchProgress != null) {
-            mMatchProgress.postValue(MatchProgress.FAILED);
+            mMatchProgress.postValue(UserFeed.MatchProgress.FAILED);
         }
         mCurrentUser = String.valueOf(id1);
         mMatchProgress = new MutableLiveData<>();
@@ -35,7 +35,7 @@ public class MatchRepo {
         return mMatchProgress;
     }
 
-    public void match(final MutableLiveData<MatchProgress> progress,
+    public void match(final MutableLiveData<UserFeed.MatchProgress> progress,
                       int uid1, int uid2, String lastMsg, String target) {
         mMatchApi
                 .getMatchRequestApi()
@@ -46,15 +46,15 @@ public class MatchRepo {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()) {
-                            progress.postValue(MatchProgress.SUCCESS);
+                            progress.postValue(UserFeed.MatchProgress.SUCCESS);
                         } else {
-                            progress.postValue(MatchProgress.FAILED);
+                            progress.postValue(UserFeed.MatchProgress.FAILED);
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        progress.postValue(MatchProgress.FAILED);
+                        progress.postValue(UserFeed.MatchProgress.FAILED);
                     }
                 });
     }

@@ -3,7 +3,7 @@ package com.example.miami.network;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.POST;
+import retrofit2.http.GET;
 
 public interface MatchRequestApi {
     class MatchBody {
@@ -20,6 +20,6 @@ public interface MatchRequestApi {
         }
     }
 
-    @POST("/api/v1/chat")
+    @GET("/api/v1/chats")
     Call<ResponseBody> match(@Body MatchRequestApi.MatchBody matchBody);
 }
