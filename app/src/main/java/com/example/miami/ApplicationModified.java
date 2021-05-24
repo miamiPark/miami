@@ -7,6 +7,7 @@ import com.example.miami.network.AuthApi;
 
 import com.example.miami.network.RegistrationApi;
 import com.example.miami.repository.AuthRepo;
+import com.example.miami.repository.MatchRepo;
 import com.example.miami.repository.RegistrationRepo;
 
 import com.example.miami.network.FeedApi;
@@ -22,6 +23,8 @@ public class ApplicationModified extends Application {
     private FeedApi feedApi;
 
     private AuthRepo mAuthRepo;
+
+    private MatchRepo mMatchRepo;
 
     private RegistrationRepo mRegistrationRepo;
     private RegistrationApi mRegistrationApi;
@@ -51,17 +54,15 @@ public class ApplicationModified extends Application {
 
     }
 
-    public AuthRepo getAuthRepo() {
-        return mAuthRepo;
-    }
+    public AuthRepo getAuthRepo() { return mAuthRepo; }
 
+    public FeedRepo getmFeedRepo() { return mFeedRepo; }
+
+    public MatchRepo getMatchRepo() { return mMatchRepo; }
 
     public RegistrationRepo getRegistrationRepo() {
         return mRegistrationRepo;
     }
-
-    public FeedRepo getmFeedRepo() { return mFeedRepo; }
-
 
     public AuthApi getApis() {
         return authApi;
