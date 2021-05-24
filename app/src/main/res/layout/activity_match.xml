@@ -7,7 +7,7 @@
     android:background="@color/white"
     tools:context=".activities.MatchActivity">
     <FrameLayout
-        android:id="@+id/fragment_like"
+        android:id="@+id/fragment_match"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />

@@ -1,11 +1,13 @@
 package com.example.miami.repository;
 
+import android.text.TextUtils;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.miami.models.match.MatchProgress;
-import com.example.miami.network.LikeApi;
 import com.example.miami.network.MatchApi;
+import com.example.miami.network.MatchRequestApi;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -15,18 +17,31 @@ import retrofit2.Response;
 public class MatchRepo {
     private final MatchApi mMatchApi;
     private MutableLiveData<MatchProgress> mMatchProgress;
+    private String mCurrentUser;
 
     public MatchRepo(MatchApi match) {
         mMatchApi = match;
     }
 
-    public LiveData<MatchProgress> like(int uid1, int uid2) {
-        like(mMatchProgress, uid1, uid2);
-        return  mMatchProgress;
+    public LiveData<MatchProgress> match(int id1, int id2, String msg, String t) {
+        if (TextUtils.equals(String.valueOf(id1), mCurrentUser) && mMatchProgress.getValue() == MatchProgress.IN_PROGRESS) {
+            return mMatchProgress;
+        } else if (!TextUtils.equals(String.valueOf(id1), mCurrentUser) && mMatchProgress != null) {
+            mMatchProgress.postValue(MatchProgress.FAILED);
+        }
+        mCurrentUser = String.valueOf(id1);
+        mMatchProgress = new MutableLiveData<>();
+        match(id1, id2, msg, t);
+        return mMatchProgress;
     }
 
-    public void like(final MutableLiveData<MatchProgress> progress, int uid1, int uid2) {
-        mMatchApi.getLikeApi().like(new LikeApi.UserLike(uid1, uid2))
+    public void match(final MutableLiveData<MatchProgress> progress,
+                      int uid1, int uid2, String lastMsg, String target) {
+        mMatchApi
+                .getMatchRequestApi()
+                .match(new MatchRequestApi.MatchBody(
+                        uid1, uid2, lastMsg, target
+                ))
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -40,7 +55,6 @@ public class MatchRepo {
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                         progress.postValue(MatchProgress.FAILED);
-
                     }
                 });
     }

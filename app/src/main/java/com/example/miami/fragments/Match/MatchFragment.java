@@ -3,12 +3,19 @@ package com.example.miami.fragments.Match;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.miami.R;
+import com.example.miami.models.feed.UserFeed;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MatchFragment extends Fragment {
 
@@ -44,6 +51,36 @@ public class MatchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_like, container, false);
+        return inflater.inflate(R.layout.fragment_match, container, false);
+    }
+
+    private class MatchList {
+        public View view;
+        public ArrayList<UserFeed> userFeeds;
+        private Observer<List<UserFeed>> observer;
+
+        public void setView(View view) {
+            this.view = view;
+        }
+
+        public MatchList() {
+            userFeeds = new ArrayList<UserFeed>();
+            observer =  new Observer<List<UserFeed>>() {
+                @Override
+                public void onChanged(List<UserFeed> users) {
+                    if (!users.isEmpty()) {
+                        userFeeds = (ArrayList<UserFeed>) users;
+                        if (userFeeds.get(userFeeds.size() - 1).id == -1) {
+                            Toast.makeText(getContext(), "Ошибка при загрузке данных, попробуйте позже", Toast.LENGTH_LONG).show();
+                        } else {
+                            UserFeed user = userFeeds.get(1);
+                            TextView name = view.findViewById(R.id.match_name);
+                            String res = user.name;
+                            name.setText(res);
+                        }
+                    }
+                }
+            };
+        }
     }
 }

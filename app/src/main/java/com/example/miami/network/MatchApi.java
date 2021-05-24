@@ -1,22 +1,21 @@
 package com.example.miami.network;
 
-import com.example.miami.models.match.Like;
-
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 
 public class MatchApi {
-    private LikeApi mLikeApi;
     private final OkHttpClient mOkHttpClient;
+    private MatchRequestApi mMatchRequestApi;
 
     public MatchApi() {
         mOkHttpClient = new OkHttpClient()
                 .newBuilder()
                 .build();
     }
-    public LikeApi getLikeApi() {
+
+    public MatchRequestApi getMatchRequestApi() {
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(MoshiConverterFactory.create())
                 .baseUrl(new HttpUrl.Builder().scheme("http")
@@ -25,11 +24,8 @@ public class MatchApi {
                 .client(mOkHttpClient)
                 .build();
 
-        mLikeApi = retrofit.create(LikeApi.class);
-        return mLikeApi;
-    }
+        mMatchRequestApi = retrofit.create(MatchRequestApi.class);
 
-    public LikeApi getmLileApi() {
-        return mLikeApi;
+        return mMatchRequestApi;
     }
 }
