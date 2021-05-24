@@ -94,7 +94,17 @@ public class CardFragment extends Fragment {
         observer = new Observer<List<UserFeed>>() {
             @Override
             public void onChanged(List<UserFeed> users) {
-                Log.w("users", users.toString());
+//                Log.w("users", users.toString());
+                //невероятный костыль, спасибо Java
+                if (users == null) {
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.fragment_view, new HeaderFragment(), null)
+                                    .add(R.id.fragment_view, new NoUsersFragment(), null)
+                                    .commit();
+                    return;
+                }
+
+
                 if (!users.isEmpty()) {
                     Log.e("ТОЛЬКО БОГ ЗНАЕТ", users.toString());
                     userFeeds = (ArrayList<UserFeed>) users;
@@ -118,8 +128,9 @@ public class CardFragment extends Fragment {
                 } else {
 //                    Toast.makeText(getContext(), "Загрузки", Toast.LENGTH_LONG).show();
 //                        getActivity().getSupportFragmentManager().beginTransaction()
-//                                    .replace(R.id.fragment_view, new NoUsersFragment(), null)
-//                                    .commitNow();
+//                                    .replace(R.id.fragment_view, new HeaderFragment(), null)
+//                                    .add(R.id.fragment_view, new NoUsersFragment(), null)
+//                                    .commit();
 //                    inflater.inflate(R.layout.fragment_no_users, container, false);
                     Log.w("users", "хахха ПУСТОЙ");
                 }

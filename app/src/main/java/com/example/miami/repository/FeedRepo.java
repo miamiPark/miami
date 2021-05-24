@@ -77,10 +77,13 @@ public class FeedRepo {
 
     private static List<UserFeed> transform(List<UsersApi.User> users) {
         List<UserFeed> result = new ArrayList<>();
-        // error here if users = []
         if (users == null) {
-            return result;
+            // начало костыля
+            return null;
         }
+        Log.e("USERS", users.toString());
+        // error here if users = []
+
         for (UsersApi.User user : users) {
             try {
                 UserFeed userFeed = map(user);
