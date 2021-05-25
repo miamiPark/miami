@@ -22,4 +22,12 @@ public class FeedViewModel extends AndroidViewModel {
     public LiveData<List<UserFeed>> getFeed() {
         return feedRepo.getFeed();
     }
+
+    public void postLike(int id) {
+        feedRepo.postLike(id);
+    }
+
+    public void postDisLike(int id) {
+        feedRepo.postDisLike(id);
+    }
 }

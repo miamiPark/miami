@@ -21,6 +21,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
 
 public class FeedApi {
     private final UsersApi usersApi;
+    private final LikeDisLikeApi likeDisLikeApi;
     private final OkHttpClient mOkHttpClient;
     private ApplicationModified MyContext;
 
@@ -50,6 +51,7 @@ public class FeedApi {
                 .build();
 
         usersApi = retrofit.create(UsersApi.class);
+        likeDisLikeApi = retrofit.create(LikeDisLikeApi.class);
     }
 
 
@@ -82,4 +84,6 @@ public class FeedApi {
     public UsersApi getUsersApi() {
         return usersApi;
     }
+
+    public LikeDisLikeApi getLikeDisLikeApi() { return likeDisLikeApi; }
 }

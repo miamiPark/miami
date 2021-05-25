@@ -10,6 +10,7 @@ import com.example.miami.ApplicationModified;
 import com.example.miami.models.feed.FeedProgress;
 import com.example.miami.models.feed.UserFeed;
 import com.example.miami.network.FeedApi;
+import com.example.miami.network.LikeDisLikeApi;
 import com.example.miami.network.UsersApi;
 
 import java.text.ParseException;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,6 +49,7 @@ public class FeedRepo {
                     Log.w("response", response.toString());
                     Log.w("response", response.body().toString());
                     if(response.isSuccessful() && response.body() != null) {
+//                        Log.e("response is []", transform(response.body().user_feed).toString());
                         mUsers.postValue(transform(response.body().user_feed));
                     } else {
                         Log.w("response", "ya tut");
@@ -74,6 +77,13 @@ public class FeedRepo {
 
     private static List<UserFeed> transform(List<UsersApi.User> users) {
         List<UserFeed> result = new ArrayList<>();
+        if (users == null) {
+            // начало костыля
+            return null;
+        }
+        Log.e("USERS", users.toString());
+        // error here if users = []
+
         for (UsersApi.User user : users) {
             try {
                 UserFeed userFeed = map(user);
@@ -100,5 +110,35 @@ public class FeedRepo {
         );
     }
 
+    public void postLike(int id) {
+        LikeDisLikeApi.Like like = new LikeDisLikeApi.Like();
+        like.user_id2 = id;
+        feedApi.getLikeDisLikeApi().like(like).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.w("response", response.toString());
+            }
 
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.w("Failure Like", t);
+            }
+        });
+    }
+
+    public void postDisLike(int id) {
+        LikeDisLikeApi.Like like = new LikeDisLikeApi.Like();
+        like.user_id2 = id;
+        feedApi.getLikeDisLikeApi().dislike(like).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.w("response", response.toString());
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.w("Failure DisLike", t);
+            }
+        });
+    }
 }
