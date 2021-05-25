@@ -3,12 +3,18 @@ package com.example.miami.fragments.Feed;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.example.miami.R;
+import com.example.miami.viewModels.FeedViewModel;
+
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,7 +33,7 @@ public class HeaderFragment extends Fragment {
     private String mParam2;
 
     public HeaderFragment() {
-        // Required empty public constructor
+        super();
     }
 
     /**
@@ -57,12 +63,28 @@ public class HeaderFragment extends Fragment {
         }
     }
 
+    private FeedViewModel feedViewModel;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_header, container, false);
+        ImageButton match = view.findViewById(R.id.matches);
 
+        feedViewModel = new ViewModelProvider(requireActivity())
+                .get(FeedViewModel.class);
+
+        match.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.w("users", "CLICK!!!");
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_view, new MatchFragment())
+                        .add(R.id.fragment_view, new HeaderFragment(), null)
+                        .commit();
+            }
+        });
         return view;
     }
 }

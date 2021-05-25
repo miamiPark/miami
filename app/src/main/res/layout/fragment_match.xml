@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,23 +8,23 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
-        android:background="@color/blue">
+        android:background="@color/blue"
+        android:layout_height="120dp"
+        android:orientation="horizontal">
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/add_photo"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/ic_camera"
             android:background="@color/dark_blue"
-            android:layout_gravity="left"
+            android:layout_gravity="left|center"
             android:layout_marginLeft="20dp"
-
             />
         <TextView
+            android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:id="@+id/match_name"
-            android:layout_height="100dp"
             android:clickable="true"
             android:focusable="true"
             android:gravity="left|center"
@@ -31,8 +32,17 @@
             android:textColor="@color/white"
             android:text="Olga"
             android:fontFamily="@font/montserrat_medium"
-            android:textSize="26sp">
+            android:textSize="26sp" >
         </TextView>
     </LinearLayout>
+    <ImageView
+        android:layout_height="5px"
+        android:layout_width="1000px"
+        android:id="@+id/match_separator"
+        android:gravity="right"
+        android:layout_marginTop="170dp"
+        android:layout_marginLeft="200dp"
+        android:background="@color/blue">
+    </ImageView>
 
 </FrameLayout>

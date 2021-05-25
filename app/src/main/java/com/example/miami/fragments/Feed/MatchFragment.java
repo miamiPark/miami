@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 
+import android.service.autofill.FieldClassification;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.miami.R;
 import com.example.miami.models.feed.UserFeed;
+import com.example.miami.network.MatchRequestApi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,26 +58,26 @@ public class MatchFragment extends Fragment {
 
     private class MatchList {
         public View view;
-        public ArrayList<UserFeed> userFeeds;
-        private Observer<List<UserFeed>> observer;
+        public ArrayList<MatchRequestApi.ChatData> matchBody;
+        private Observer<List<MatchRequestApi.ChatData>> observer;
 
         public void setView(View view) {
             this.view = view;
         }
 
         public MatchList() {
-            userFeeds = new ArrayList<UserFeed>();
-            observer =  new Observer<List<UserFeed>>() {
+            matchBody = new ArrayList<MatchRequestApi.ChatData>();
+            observer =  new Observer<List<MatchRequestApi.ChatData>>() {
                 @Override
-                public void onChanged(List<UserFeed> users) {
-                    if (!users.isEmpty()) {
-                        userFeeds = (ArrayList<UserFeed>) users;
-                        if (userFeeds.get(userFeeds.size() - 1).id == -1) {
+                public void onChanged(List<MatchRequestApi.ChatData> matches) {
+                    if (!matches.isEmpty()) {
+                        matchBody = (ArrayList<MatchRequestApi.ChatData>) matches;
+                        if (matchBody.get(matchBody.size() - 1).id == -1) {
                             Toast.makeText(getContext(), "Ошибка при загрузке данных, попробуйте позже", Toast.LENGTH_LONG).show();
                         } else {
-                            UserFeed user = userFeeds.get(1);
+                            MatchRequestApi.ChatData match = matchBody.get(1);
                             TextView name = view.findViewById(R.id.match_name);
-                            String res = user.name;
+                            String res = match.partner.name;
                             name.setText(res);
                         }
                     }

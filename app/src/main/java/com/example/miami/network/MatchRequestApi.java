@@ -4,7 +4,6 @@ import com.example.miami.models.feed.UserFeed;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.GET;
 
 public interface MatchRequestApi {
@@ -33,5 +32,5 @@ public interface MatchRequestApi {
     }
 
     @GET("/api/v1/chats")
-    Call<ResponseBody> match(@Body MatchRequestApi.MatchBody matchBody);
+    Call<MatchBody> match();
 }
