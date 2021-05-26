@@ -1,9 +1,12 @@
 package com.example.miami.fragments.Feed;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.service.autofill.FieldClassification;
 import android.util.Log;
@@ -17,6 +20,8 @@ import android.widget.Toast;
 import com.example.miami.R;
 import com.example.miami.models.feed.UserFeed;
 import com.example.miami.network.MatchRequestApi;
+import com.example.miami.repository.MatchRepo;
+import com.example.miami.viewModels.FeedViewModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -52,27 +57,43 @@ public class MatchFragment extends Fragment {
         }
     }
 
-    private  Observer<List<MatchRequestApi.ChatData>> observer;
+    private  Observer<MatchRequestApi.MatchBody> observer;
     private ArrayList<MatchRequestApi.ChatData> Chats;
+    private FeedViewModel feedViewModel;
+    private static Context MyContext;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.w("МАТЧИ", "CREATE VIEW");
         View view = inflater.inflate(R.layout.fragment_match, container, false);
-        observer = new Observer<List<MatchRequestApi.ChatData>>() {
+        TextView textView = view.findViewById(R.id.match_name);
+
+//        feedViewModel = new ViewModelProvider(getActivity())
+//                .get(FeedViewModel.class);
+//        feedViewModel.getMatch().observe(getViewLifecycleOwner(), observer);
+//
+//        MatchRepo matchRepo = MatchRepo.getInstance(MyContext);
+//        LiveData<MatchRequestApi.MatchBody> matchBody = matchRepo.getMatch();
+        textView.setText("Anna");
+
+        observer = new Observer<MatchRequestApi.MatchBody>() {
             @Override
-            public void onChanged(List<MatchRequestApi.ChatData> chatData) {
+            public void onChanged(MatchRequestApi.MatchBody chatData) {
+                Log.w("МАТЧИ", "Observer");
                 if (chatData == null) {
-                    // Cоздать фрагмент, что вас не лайкали
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_view, new HeaderFragment(), null)
+                            .add(R.id.fragment_view, new NoMatchFragment(), null)
+                            .commit();
                     return;
                 }
-                if (!chatData.isEmpty()) {
-                    Log.w("МАТЧИ", chatData.toString());
-                    draw(view);
-                } else {
-                    Log.w("МАТЧИ", "ПУСТОЙ");
-                }
+//                if (!chatData[0].isEmpty()) {
+//                    Log.w("МАТЧИ", chatData.toString());
+//                    draw(view);
+//                } else {
+//                    Log.w("МАТЧИ", "ПУСТОЙ");
+//                }
             }
         };
 

@@ -31,7 +31,6 @@
             android:gravity="left|center"
             android:layout_marginLeft="20dp"
             android:textColor="@color/white"
-            android:text="Olga"
             android:fontFamily="@font/montserrat_medium"
             android:textSize="26sp" >
         </TextView>

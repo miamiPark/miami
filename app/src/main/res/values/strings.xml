@@ -13,4 +13,5 @@
     <string name="input_number_pass">Введите номер телефона и пароль:</string>
     <string name="coming">Войти</string>
     <string name="sorry">К сожалению, пользователи закончились, зовите своих друзей,и такого больше не повторится</string>
+    <string name="sorry_match">К сожалению, у вас нет пока взаимных лайков, лайкайте,и такого больше не повторится</string>
 </resources>

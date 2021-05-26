@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.miami.ApplicationModified;
 import com.example.miami.models.feed.MatchProgress;
 import com.example.miami.models.feed.UserFeed;
+import com.example.miami.network.LoginApi;
 import com.example.miami.network.MatchApi;
 import com.example.miami.network.MatchRequestApi;
 
@@ -25,7 +26,7 @@ public class MatchRepo {
     private final MatchApi matchApi;
     private MutableLiveData<MatchProgress> mMatchProgress;
     private String mCurrentUser;
-    private final static MutableLiveData<List<MatchRequestApi.ChatData>> mMatch = new MutableLiveData<>();
+    private final static MutableLiveData<MatchRequestApi.MatchBody> mMatch = new MutableLiveData<>();
 
     public MatchRepo(MatchApi match) {
         matchApi = match;
@@ -36,7 +37,7 @@ public class MatchRepo {
         return ApplicationModified.from(context).getMatchRepo();
     }
 
-    public LiveData<List<MatchRequestApi.ChatData>> getMatch() {
+    public LiveData<MatchRequestApi.MatchBody> getMatch() {
         Log.w("response", "FEED_MATCH");
         matchApi.getMatchRequestApi().match().enqueue(new Callback<MatchRequestApi.MatchBody>() {
             @Override

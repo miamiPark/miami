@@ -27,7 +27,7 @@ public class FeedViewModel extends AndroidViewModel {
         return feedRepo.getFeed();
     }
 
-    public LiveData<List<MatchRequestApi.ChatData>> getMatch() {
+    public LiveData<MatchRequestApi.MatchBody> getMatch() {
         return matchRepo.getMatch();
     }
 
