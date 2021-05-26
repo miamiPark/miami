@@ -63,25 +63,21 @@ public class HeaderFragment extends Fragment {
         }
     }
 
-    private FeedViewModel feedViewModel;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_header, container, false);
-        ImageButton match = view.findViewById(R.id.matches);
-
-        feedViewModel = new ViewModelProvider(requireActivity())
-                .get(FeedViewModel.class);
+        ImageButton match = view.findViewById(R.id.headerMatch);
 
         match.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.w("users", "CLICK!!!");
-                requireActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_view, new MatchFragment())
-                        .add(R.id.fragment_view, new HeaderFragment(), null)
+                requireActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.content_feed, new MatchFragment())
                         .commit();
             }
         });

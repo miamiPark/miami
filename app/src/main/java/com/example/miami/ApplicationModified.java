@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.example.miami.network.AuthApi;
 
+import com.example.miami.network.MatchApi;
 import com.example.miami.network.RegistrationApi;
 import com.example.miami.repository.AuthRepo;
 import com.example.miami.repository.MatchRepo;
@@ -23,6 +24,8 @@ public class ApplicationModified extends Application {
     private FeedApi feedApi;
 
     private AuthRepo mAuthRepo;
+
+    private MatchApi mMatchApi;
 
     private MatchRepo mMatchRepo;
 
@@ -45,6 +48,8 @@ public class ApplicationModified extends Application {
         feedApi.setContext(this);
 
         mAuthRepo = new AuthRepo(authApi);
+        mMatchApi = new MatchApi();
+        mMatchRepo = new MatchRepo(mMatchApi);
 
 
         mRegistrationApi = new RegistrationApi();

@@ -18,10 +18,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.miami.R;
+import com.example.miami.models.feed.ChatModel;
 import com.example.miami.models.feed.UserFeed;
 import com.example.miami.network.MatchRequestApi;
 import com.example.miami.repository.MatchRepo;
 import com.example.miami.viewModels.FeedViewModel;
+import com.example.miami.viewModels.MatchViewModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -57,10 +59,9 @@ public class MatchFragment extends Fragment {
         }
     }
 
-    private  Observer<MatchRequestApi.MatchBody> observer;
-    private ArrayList<MatchRequestApi.ChatData> Chats;
-    private FeedViewModel feedViewModel;
-    private static Context MyContext;
+    private ChatModel Chats;
+    private MatchViewModel matchViewModel;
+    private  Observer<ChatModel> observer;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,18 +69,11 @@ public class MatchFragment extends Fragment {
         Log.w("МАТЧИ", "CREATE VIEW");
         View view = inflater.inflate(R.layout.fragment_match, container, false);
         TextView textView = view.findViewById(R.id.match_name);
-
-//        feedViewModel = new ViewModelProvider(getActivity())
-//                .get(FeedViewModel.class);
-//        feedViewModel.getMatch().observe(getViewLifecycleOwner(), observer);
-//
-//        MatchRepo matchRepo = MatchRepo.getInstance(MyContext);
-//        LiveData<MatchRequestApi.MatchBody> matchBody = matchRepo.getMatch();
         textView.setText("Anna");
 
-        observer = new Observer<MatchRequestApi.MatchBody>() {
+        observer = new Observer<ChatModel>() {
             @Override
-            public void onChanged(MatchRequestApi.MatchBody chatData) {
+            public void onChanged(ChatModel chatData) {
                 Log.w("МАТЧИ", "Observer");
                 if (chatData == null) {
                     getActivity().getSupportFragmentManager().beginTransaction()
@@ -100,41 +94,11 @@ public class MatchFragment extends Fragment {
         return view;
     }
 
-    public void draw(View view) {
-        Log.w("draw", "РИСУЮ");
-        MatchRequestApi.ChatData chat = Chats.get(1);
-        TextView name = view.findViewById(R.id.match_item);
-        String res = chat.partner.name + ", " + chat.messages[0];
-        name.setText(res);
-    }
-
-    private class MatchList {
-        public View view;
-        public ArrayList<MatchRequestApi.ChatData> matchBody;
-        private Observer<List<MatchRequestApi.ChatData>> observer;
-
-        public void setView(View view) {
-            this.view = view;
-        }
-
-        public MatchList() {
-            matchBody = new ArrayList<MatchRequestApi.ChatData>();
-            observer =  new Observer<List<MatchRequestApi.ChatData>>() {
-                @Override
-                public void onChanged(List<MatchRequestApi.ChatData> matches) {
-                    if (!matches.isEmpty()) {
-                        matchBody = (ArrayList<MatchRequestApi.ChatData>) matches;
-                        if (matchBody.get(matchBody.size() - 1).id == -1) {
-                            Toast.makeText(getContext(), "Ошибка при загрузке данных, попробуйте позже", Toast.LENGTH_LONG).show();
-                        } else {
-                            MatchRequestApi.ChatData match = matchBody.get(1);
-                            TextView name = view.findViewById(R.id.match_name);
-                            String res = match.partner.name;
-                            name.setText(res);
-                        }
-                    }
-                }
-            };
-        }
-    }
+//    public void draw(View view) {
+//        Log.w("draw", "РИСУЮ");
+//        MatchRequestApi.ChatData chat = Chats.get(1);
+//        TextView name = view.findViewById(R.id.match_item);
+//        String res = chat.partner.name + ", " + chat.messages[0];
+//        name.setText(res);
+//    }
 }

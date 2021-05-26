@@ -1,14 +1,10 @@
-package com.example.miami.network;
+package com.example.miami.models.feed;
 
-import com.example.miami.models.feed.UserFeed;
+import com.example.miami.network.MatchRequestApi;
 
 import java.util.List;
 
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.http.GET;
-
-public interface MatchRequestApi {
+public class ChatModel {
 
     class Msg {
         public int user_id;
@@ -24,10 +20,5 @@ public interface MatchRequestApi {
         public String filter;
     }
 
-    class ChatModel {
-        public List<ChatData> data;
-    }
-
-    @GET("/api/v1/chats")
-    Call<ChatModel> match();
+    public List<ChatData> data;
 }

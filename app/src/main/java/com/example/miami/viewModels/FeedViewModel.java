@@ -17,18 +17,12 @@ import java.util.List;
 public class FeedViewModel extends AndroidViewModel {
     private FeedRepo feedRepo = FeedRepo.getInstance(getApplication());
 
-    private MatchRepo matchRepo = MatchRepo.getInstance(getApplication());
-
     public FeedViewModel(@NonNull Application application) {
         super(application);
     }
 
     public LiveData<List<UserFeed>> getFeed() {
         return feedRepo.getFeed();
-    }
-
-    public LiveData<MatchRequestApi.MatchBody> getMatch() {
-        return matchRepo.getMatch();
     }
 
     public void postLike(int id) {

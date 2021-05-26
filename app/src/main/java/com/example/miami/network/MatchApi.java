@@ -1,5 +1,7 @@
 package com.example.miami.network;
 
+import android.content.Context;
+
 import com.example.miami.ApplicationModified;
 
 import java.io.IOException;
@@ -33,9 +35,7 @@ public class MatchApi {
                     }
                 })
                 .build();
-    }
 
-    public MatchRequestApi getMatchRequestApi() {
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(MoshiConverterFactory.create())
                 .baseUrl(new HttpUrl.Builder().scheme("http")
@@ -44,8 +44,16 @@ public class MatchApi {
                 .client(mOkHttpClient)
                 .build();
 
+
         mMatchRequestApi = retrofit.create(MatchRequestApi.class);
 
+    }
+
+    public void setContext(Context context) {
+        MyContext =  (ApplicationModified) context;
+    }
+
+    public MatchRequestApi getMatchApi() {
         return mMatchRequestApi;
     }
 }
