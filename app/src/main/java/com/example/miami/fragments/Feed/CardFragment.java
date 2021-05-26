@@ -98,8 +98,7 @@ public class CardFragment extends Fragment {
                 //невероятный костыль, спасибо Java
                 if (users == null) {
                     getActivity().getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.fragment_view, new HeaderFragment(), null)
-                                    .add(R.id.fragment_view, new NoUsersFragment(), null)
+                                    .replace(R.id.content_feed, new NoUsersFragment(), null)
                                     .commit();
                     return;
                 }

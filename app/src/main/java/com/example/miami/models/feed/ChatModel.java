@@ -2,6 +2,7 @@ package com.example.miami.models.feed;
 
 import com.example.miami.network.MatchRequestApi;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChatModel {
@@ -13,12 +14,12 @@ public class ChatModel {
         public String time_delivery;
     }
 
-    class ChatData {
+    public static class ChatData {
         public int id;
         public UserFeed partner;
         public Msg[] messages;
         public String filter;
     }
 
-    public List<ChatData> data;
+    public ArrayList<ChatData> data;
 }

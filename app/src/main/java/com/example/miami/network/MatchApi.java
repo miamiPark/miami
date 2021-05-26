@@ -46,7 +46,6 @@ public class MatchApi {
 
 
         mMatchRequestApi = retrofit.create(MatchRequestApi.class);
-
     }
 
     public void setContext(Context context) {

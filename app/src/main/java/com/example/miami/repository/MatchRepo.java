@@ -15,6 +15,7 @@ import com.example.miami.network.LoginApi;
 import com.example.miami.network.MatchApi;
 import com.example.miami.network.MatchRequestApi;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -25,9 +26,13 @@ import retrofit2.Response;
 public class MatchRepo {
     private final MatchApi matchApi;
     private static Context MyContext;
-    private MutableLiveData<MatchProgress> mMatchProgress;
-    private String mCurrentUser;
     private final static MutableLiveData<ChatModel> mMatch = new MutableLiveData<>();
+//
+//    static {
+//        ChatModel chatModel = new ChatModel();
+//        chatModel.data = new ArrayList<>();
+//        mMatch.setValue(chatModel);
+//    }
 
     public MatchRepo(MatchApi match) {
         matchApi = match;
@@ -44,8 +49,11 @@ public class MatchRepo {
             @Override
             public void onResponse(Call<MatchRequestApi.ChatModel> call, Response<MatchRequestApi.ChatModel> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                   Log.w("response", response.toString());
-                   Log.w("response", response.body().toString());
+                    Log.w("response", response.toString());
+                    ChatModel chatModel = transform(response.body());
+                    Log.w("я ЗДЕЕЕЕЕЕСЬ", chatModel.data.get(0).partner.linkImages[0]);
+
+                    mMatch.postValue(chatModel);
                 } else {
                     Log.w("response", "response is null");
                 }
@@ -53,31 +61,27 @@ public class MatchRepo {
 
             @Override
             public void onFailure(Call<MatchRequestApi.ChatModel> call, Throwable t) {
-
+                Log.w("фэйлур", "в матч репо");
             }
         });
         return mMatch;
     }
 
-//    public void match(final MutableLiveData<MatchProgress> progress,
-//                      int id, String target) {
-//        matchApi
-//                .getMatchRequestApi()
-//                .match()
-//                .enqueue(new Callback<ResponseBody>() {
-//                    @Override
-//                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                        if (response.isSuccessful()) {
-//                            progress.postValue(MatchProgress.SUCCESS);
-//                        } else {
-//                            progress.postValue(MatchProgress.FAILED);
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                        progress.postValue(MatchProgress.FAILED);
-//                    }
-//                });
-//    }
+    public ChatModel transform(MatchRequestApi.ChatModel chatModel) {
+        ChatModel result = new ChatModel();
+        if (chatModel.data == null) {
+            return result;
+        }
+        result.data = new ArrayList<>();
+        for (int i = 0; i < chatModel.data.size(); ++i) {
+            ChatModel.ChatData chatData = new ChatModel.ChatData();
+            chatData.partner = new UserFeed();
+            chatData.partner.name = chatModel.data.get(i).partner.name;
+            chatData.partner.date_birth = chatModel.data.get(i).partner.date_birth;
+            chatData.partner.linkImages = chatModel.data.get(i).partner.linkImages;
+
+            result.data.add(chatData);
+        }
+        return result;
+    }
 }

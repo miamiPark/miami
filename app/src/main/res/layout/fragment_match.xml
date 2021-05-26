@@ -5,44 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.Feed.MatchFragment">
-
-    <LinearLayout
-        android:id="@+id/match_item"
+    <FrameLayout
+        android:id="@+id/matchList"
         android:layout_width="match_parent"
-        android:layout_marginTop="70dp"
-        android:background="@color/blue"
-        android:layout_height="120dp"
-        android:orientation="horizontal">
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/add_photo"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/ic_camera"
-            android:background="@color/dark_blue"
-            android:layout_gravity="left|center"
-            android:layout_marginLeft="20dp"
-            />
-        <TextView
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:id="@+id/match_name"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="left|center"
-            android:layout_marginLeft="20dp"
-            android:textColor="@color/white"
-            android:fontFamily="@font/montserrat_medium"
-            android:textSize="26sp" >
-        </TextView>
-    </LinearLayout>
-    <ImageView
-        android:layout_height="5px"
-        android:layout_width="1000px"
-        android:id="@+id/match_separator"
-        android:gravity="right"
-        android:layout_marginTop="170dp"
-        android:layout_marginLeft="200dp"
-        android:background="@color/blue">
-    </ImageView>
+        android:layout_height="match_parent"
+        android:layout_marginTop="80dp"/>
 
 </FrameLayout>

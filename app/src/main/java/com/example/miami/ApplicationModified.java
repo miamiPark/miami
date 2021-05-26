@@ -49,6 +49,7 @@ public class ApplicationModified extends Application {
 
         mAuthRepo = new AuthRepo(authApi);
         mMatchApi = new MatchApi();
+        mMatchApi.setContext(this);
         mMatchRepo = new MatchRepo(mMatchApi);
 
 
