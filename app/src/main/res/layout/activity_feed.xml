@@ -7,9 +7,13 @@
     android:background="@color/white"
     tools:context=".activities.FeedActivity">
     <FrameLayout
-        android:id="@+id/fragment_view"
+        android:id="@+id/content_feed"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <FrameLayout
+        android:id="@+id/header_feed"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

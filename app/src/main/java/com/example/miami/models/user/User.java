@@ -1,13 +1,13 @@
 package com.example.miami.models.user;
 
 public class User {
-    private String telephone;
-    private String password;
-    private String name;
-    private String dateOfBirth;
-    private String sex;
-    private String job;
-    private String education;
-    private String aboutMe;
-    private String photo;
+    public String telephone;
+    public String password;
+    public String name;
+    public String dateOfBirth;
+    public String sex;
+    public String job;
+    public String education;
+    public String aboutMe;
+    public String photo;
 }

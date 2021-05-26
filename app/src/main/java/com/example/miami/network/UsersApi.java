@@ -34,4 +34,7 @@ public interface UsersApi {
 
     @GET("/api/v1/feed")
     Call<Users> getFeed();
+
+    @GET("/api/v1/me")
+    Call<User> getMe();
 }

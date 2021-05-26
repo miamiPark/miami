@@ -94,7 +94,18 @@ public class CardFragment extends Fragment {
         observer = new Observer<List<UserFeed>>() {
             @Override
             public void onChanged(List<UserFeed> users) {
+//                Log.w("users", users.toString());
+                //невероятный костыль, спасибо Java
+                if (users == null) {
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.content_feed, new NoUsersFragment(), null)
+                                    .commit();
+                    return;
+                }
+
+
                 if (!users.isEmpty()) {
+                    Log.e("ТОЛЬКО БОГ ЗНАЕТ", users.toString());
                     userFeeds = (ArrayList<UserFeed>) users;
                     if (userFeeds.get(userFeeds.size() - 1).id == -1) {
                         Toast.makeText(getContext(), "Ошибка при загрузке данных, попробуйте позже", Toast.LENGTH_LONG).show();
@@ -114,10 +125,12 @@ public class CardFragment extends Fragment {
 
                     }
                 } else {
-                    Toast.makeText(getContext(), "Загрузки", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getContext(), "Загрузки", Toast.LENGTH_LONG).show();
 //                        getActivity().getSupportFragmentManager().beginTransaction()
-//                                    .replace(R.id.fragment_view, new CardFragment(), null)
+//                                    .replace(R.id.fragment_view, new HeaderFragment(), null)
+//                                    .add(R.id.fragment_view, new NoUsersFragment(), null)
 //                                    .commit();
+//                    inflater.inflate(R.layout.fragment_no_users, container, false);
                     Log.w("users", "хахха ПУСТОЙ");
                 }
 
@@ -128,6 +141,7 @@ public class CardFragment extends Fragment {
                         .get(FeedViewModel.class);
 
         feedViewModel.getFeed().observe(getViewLifecycleOwner(), observer);
+        Log.e("observer", "hahaha");
 
         ImageButton like = view.findViewById(R.id.like);
         ImageButton dislike = view.findViewById(R.id.dislike);
@@ -145,7 +159,7 @@ public class CardFragment extends Fragment {
                 listenerDisLike(view);
             }
         });
-
+        Log.e("observer", "setView");
         return view;
     }
 
@@ -196,7 +210,9 @@ public class CardFragment extends Fragment {
     public void listenerLike(View view) {
         // Like запрос numberCard
 
+        feedViewModel.postLike(userFeeds.get(numberCard).id);
         Log.w("ЛАЙК", "СТАВЛЮ");
+
         numberCard++;
         if (numberCard == userFeeds.size()) {
             numberCard = 0;
@@ -208,6 +224,7 @@ public class CardFragment extends Fragment {
 
     public void listenerDisLike(View view) {
         // DisLike запрос numberCard
+        feedViewModel.postDisLike(userFeeds.get(numberCard).id);
         Log.w("ДИЗЛАЙК", "СТАВЛЮ");
         numberCard++;
         if (numberCard == userFeeds.size()) {
