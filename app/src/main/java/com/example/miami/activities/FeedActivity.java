@@ -18,11 +18,11 @@ public class FeedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_feed);
 
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_view, new HeaderFragment(), null)
+                .add(R.id.header_feed, new HeaderFragment(), null)
                 .commit();
 
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_view, new CardFragment(), null)
+                .add(R.id.content_feed, new CardFragment(), null)
                 .commit();
 
     }

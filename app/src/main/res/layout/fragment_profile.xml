@@ -16,7 +16,7 @@
         android:orientation="vertical"
         android:layout_gravity="center">
         <ImageView
-            android:id="@+id/icon"
+            android:id="@+id/profileIcon"
             android:layout_width="350dp"
             android:layout_height="450dp"
             android:layout_gravity="center"
@@ -32,7 +32,7 @@
 <!--                />-->
         </ImageView>
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/profileInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Olya, 20"

@@ -7,43 +7,28 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.miami.R;
+import com.example.miami.models.user.User;
+import com.example.miami.viewModels.ProfileViewModel;
+import com.squareup.picasso.Picasso;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
 public class ProfileFragment extends Fragment {
+    private ProfileViewModel profileViewModel;
+    private User user;
+    private Observer<User> observer;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    public ProfileFragment() {}
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public ProfileFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfileFragment newInstance(String param1, String param2) {
+    public static ProfileFragment newInstance() {
         ProfileFragment fragment = new ProfileFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -51,16 +36,42 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+//        return inflater.inflate(R.layout.fragment_profile, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        observer = new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                if (user == null) {
+                    Toast.makeText(getContext(), "Ошибка при загрузке данных, попробуйте позже", Toast.LENGTH_LONG).show();
+                } else {
+                    draw(view, user);
+                }
+            }
+        };
+
+        profileViewModel = new ViewModelProvider(getActivity()).get(ProfileViewModel.class);
+
+        profileViewModel.getUser().observe(getViewLifecycleOwner(), observer);
+
+        return view;
+    }
+
+    public void draw(View view, User user) {
+        ImageView image = view.findViewById(R.id.profileIcon);
+
+        Picasso.with(getContext())
+                .load(user.photo)
+                .into(image);
+
+        TextView profileInfo = view.findViewById(R.id.profileInfo);
+        String result = user.name + ", " + user.dateOfBirth;
+        profileInfo.setText(result);
     }
 }
