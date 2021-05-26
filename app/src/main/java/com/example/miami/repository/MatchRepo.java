@@ -51,7 +51,6 @@ public class MatchRepo {
                 if (response.isSuccessful() && response.body() != null) {
                     Log.w("response", response.toString());
                     ChatModel chatModel = transform(response.body());
-                    Log.w("я ЗДЕЕЕЕЕЕСЬ", chatModel.data.get(0).partner.linkImages[0]);
 
                     mMatch.postValue(chatModel);
                 } else {

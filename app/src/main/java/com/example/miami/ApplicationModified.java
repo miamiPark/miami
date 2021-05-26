@@ -11,6 +11,7 @@ import com.example.miami.network.RegistrationApi;
 import com.example.miami.repository.AuthRepo;
 import com.example.miami.repository.MatchRepo;
 import com.example.miami.network.ProfileApi;
+import com.example.miami.repository.ProfileRepo;
 import com.example.miami.repository.RegistrationRepo;
 
 import com.example.miami.network.FeedApi;
@@ -75,10 +76,6 @@ public class ApplicationModified extends Application {
 
     public RegistrationRepo getRegistrationRepo() {
         return mRegistrationRepo;
-    }
-
-    public FeedRepo getmFeedRepo() {
-        return mFeedRepo;
     }
 
     public ProfileRepo getProfileRepo() {
