@@ -5,10 +5,12 @@ import android.content.Context;
 
 import com.example.miami.network.AuthApi;
 
+
 import com.example.miami.network.MatchApi;
 import com.example.miami.network.RegistrationApi;
 import com.example.miami.repository.AuthRepo;
 import com.example.miami.repository.MatchRepo;
+import com.example.miami.network.ProfileApi;
 import com.example.miami.repository.RegistrationRepo;
 
 import com.example.miami.network.FeedApi;
@@ -22,6 +24,7 @@ import retrofit2.Call;
 public class ApplicationModified extends Application {
     private AuthApi authApi;
     private FeedApi feedApi;
+    private ProfileApi profileApi;
 
     private AuthRepo mAuthRepo;
 
@@ -31,6 +34,7 @@ public class ApplicationModified extends Application {
 
     private RegistrationRepo mRegistrationRepo;
     private RegistrationApi mRegistrationApi;
+    private ProfileRepo profileRepo;
 
     private FeedRepo mFeedRepo;
 
@@ -44,13 +48,16 @@ public class ApplicationModified extends Application {
 
         authApi = new AuthApi();
         feedApi = new FeedApi();
+        profileApi = new ProfileApi();
 
         feedApi.setContext(this);
+        profileApi.setContext(this);
 
         mAuthRepo = new AuthRepo(authApi);
         mMatchApi = new MatchApi();
         mMatchApi.setContext(this);
         mMatchRepo = new MatchRepo(mMatchApi);
+        profileRepo = new ProfileRepo(profileApi);
 
 
         mRegistrationApi = new RegistrationApi();
@@ -68,6 +75,14 @@ public class ApplicationModified extends Application {
 
     public RegistrationRepo getRegistrationRepo() {
         return mRegistrationRepo;
+    }
+
+    public FeedRepo getmFeedRepo() {
+        return mFeedRepo;
+    }
+
+    public ProfileRepo getProfileRepo() {
+        return profileRepo;
     }
 
     public AuthApi getApis() {

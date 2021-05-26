@@ -82,7 +82,7 @@ public class NameFragment extends Fragment {
                 Toast.makeText(getContext(), "Заполните поле", Toast.LENGTH_LONG).show();
             } else if (registrationState == RegistrationState.NAME_SUCCESS) {
                 mNextButton.setEnabled(true);
-                Objects.requireNonNull(getActivity())
+                requireActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.registration_view, new DateBirthFragment())

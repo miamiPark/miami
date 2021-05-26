@@ -15,41 +15,17 @@ import com.example.miami.R;
 import com.example.miami.viewModels.FeedViewModel;
 
 import java.util.Objects;
+import com.example.miami.fragments.Profile.ProfileFragment;
+import com.example.miami.fragments.Registration.DateBirthFragment;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HeaderFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class HeaderFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     public HeaderFragment() {
         super();
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HeaderFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static HeaderFragment newInstance(String param1, String param2) {
         HeaderFragment fragment = new HeaderFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,10 +33,6 @@ public class HeaderFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -79,6 +51,33 @@ public class HeaderFragment extends Fragment {
                         .beginTransaction()
                         .replace(R.id.content_feed, new MatchFragment())
                         .commit();
+            }
+        });
+        View profile = view.findViewById(R.id.headerProfile);
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.w("авваъъавъваъавъваъа", "я здесь");
+                requireActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.content_feed, new ProfileFragment())
+                        .commit();
+                Log.w("авваъъавъваъавъваъа", "и здесь");
+            }
+        });
+
+        View feed = view.findViewById(R.id.headerFeed);
+        feed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.w("авваъъавъваъавъваъа", "я здесь");
+                requireActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.content_feed, new CardFragment())
+                        .commit();
+                Log.w("авваъъавъваъавъваъа", "и здесь");
             }
         });
         return view;
