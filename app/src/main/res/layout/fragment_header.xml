@@ -37,17 +37,13 @@
             android:background="@drawable/button_color_selector"
             android:layout_weight="1"
             />
-
         <ImageButton
+            android:id="@+id/headerMatch"
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:layout_height="fill_parent"
             android:src="@drawable/ic_chats"
             android:background="@drawable/button_color_selector"
             />
-
-
     </LinearLayout>
-
-
 </FrameLayout>

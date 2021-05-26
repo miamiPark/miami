@@ -7,8 +7,10 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.miami.models.feed.UserFeed;
+import com.example.miami.network.MatchRequestApi;
 import com.example.miami.network.UsersApi;
 import com.example.miami.repository.FeedRepo;
+import com.example.miami.repository.MatchRepo;
 
 import java.util.List;
 
