@@ -6,15 +6,18 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 
 import android.service.autofill.FieldClassification;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.miami.R;
 import com.example.miami.models.feed.UserFeed;
 import com.example.miami.network.MatchRequestApi;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,11 +52,39 @@ public class MatchFragment extends Fragment {
         }
     }
 
+    private  Observer<List<MatchRequestApi.ChatData>> observer;
+    private ArrayList<MatchRequestApi.ChatData> Chats;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_match, container, false);
+        Log.w("МАТЧИ", "CREATE VIEW");
+        View view = inflater.inflate(R.layout.fragment_match, container, false);
+        observer = new Observer<List<MatchRequestApi.ChatData>>() {
+            @Override
+            public void onChanged(List<MatchRequestApi.ChatData> chatData) {
+                if (chatData == null) {
+                    // Cоздать фрагмент, что вас не лайкали
+                    return;
+                }
+                if (!chatData.isEmpty()) {
+                    Log.w("МАТЧИ", chatData.toString());
+                    draw(view);
+                } else {
+                    Log.w("МАТЧИ", "ПУСТОЙ");
+                }
+            }
+        };
+
+        return view;
+    }
+
+    public void draw(View view) {
+        Log.w("draw", "РИСУЮ");
+        MatchRequestApi.ChatData chat = Chats.get(1);
+        TextView name = view.findViewById(R.id.match_item);
+        String res = chat.partner.name + ", " + chat.messages[0];
+        name.setText(res);
     }
 
     private class MatchList {
