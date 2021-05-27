@@ -10,4 +10,5 @@ public class User {
     public String education;
     public String aboutMe;
     public String photo;
+    public String[] allPhotos;
 }

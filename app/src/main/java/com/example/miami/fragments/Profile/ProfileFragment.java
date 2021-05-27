@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.miami.R;
+import com.example.miami.fragments.Gallery.GalleryFragment;
 import com.example.miami.models.user.User;
 import com.example.miami.viewModels.ProfileViewModel;
 import com.squareup.picasso.Picasso;
@@ -52,6 +54,21 @@ public class ProfileFragment extends Fragment {
                     Toast.makeText(getContext(), "Ошибка при загрузке данных, попробуйте позже", Toast.LENGTH_LONG).show();
                 } else {
                     draw(view, user);
+
+                    ImageView image = view.findViewById(R.id.profileIcon);
+
+                    image.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Log.w("галерея", "галерея здесь");
+                            requireActivity()
+                                    .getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.content_feed, new GalleryFragment(user.allPhotos))
+                                    .commit();
+                            Log.w("галерея здесь", "и галерея здесь");
+                        }
+                    });
                 }
             }
         };

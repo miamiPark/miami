@@ -67,6 +67,7 @@ public class ProfileRepo {
         result.name = user.name;
         result.dateOfBirth = Integer.toString(user.date_birth);
         result.photo = user.linkImages[0];
+        result.allPhotos = user.linkImages;
 
         // можно еще расширить, типа описание добавить и тд
 
