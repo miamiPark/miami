@@ -52,9 +52,10 @@ public class GalleryFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_gallery, container, false);
 
 //        imageView = (ImageView) findViewById(R.id.imageView);
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.setHasFixedSize(true);
 
         ArrayList imageUrlList = prepareData(mImages);
         DataAdapter dataAdapter = new DataAdapter(getContext(), imageUrlList);

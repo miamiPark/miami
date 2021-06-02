@@ -97,7 +97,9 @@ public class MatchFragment extends Fragment {
             transaction
                     .add(R.id.matchList, OneMatch.newInstance(
                             chatData.partner.name + ", " + Integer.toString(chatData.partner.date_birth),
-                            chatData.partner.linkImages[0])
+                            chatData.partner.linkImages[0],
+                            chatData.partner.linkImages
+                            )
                     );
         }
         transaction.commit();

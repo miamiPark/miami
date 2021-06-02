@@ -1,6 +1,7 @@
 package com.example.miami.imageGallery;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,15 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.miami.R;
+import com.example.miami.activities.GallerySinglePhotoActivity;
 
 import java.util.ArrayList;
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     private ArrayList<ImageUrl> imageUrls;
-    private Context context;
+    private Context mContext;
 
-    public DataAdapter(Context context, ArrayList<ImageUrl> imageUrls) {
-        this.context = context;
+    public DataAdapter(Context mContext, ArrayList<ImageUrl> imageUrls) {
+        this.mContext = mContext;
         this.imageUrls = imageUrls;
 
     }
@@ -37,7 +39,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
      */
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        Glide.with(context).load(imageUrls.get(i).getImageUrl()).into(viewHolder.img);
+        Glide.with(mContext).load(imageUrls.get(i).getImageUrl()).fitCenter().into(viewHolder.imageView);
     }
 
     @Override
@@ -45,13 +47,26 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
         return imageUrls.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        ImageView img;
+        public ImageView imageView;
 
         public ViewHolder(View view) {
             super(view);
-            img = view.findViewById(R.id.imageView);
+            imageView = view.findViewById(R.id.imageView);
+            view.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            if (position != RecyclerView.NO_POSITION) {
+                ImageUrl url = imageUrls.get(position);
+
+                Intent intent = new Intent(mContext, GallerySinglePhotoActivity.class);
+                intent.putExtra(GallerySinglePhotoActivity.EXTRA_URL, url.getImageUrl());
+                mContext.startActivity(intent);
+            }
         }
     }
 }
