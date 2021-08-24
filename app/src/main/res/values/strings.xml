@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">MiAmi</string>
+    <string name="about_you">Расскажите о себе</string>
+    <string name="enter_name">Моё имя</string>
+    <string name="enter_birth_date">Мой день рождения</string>
+    <string name="continue_button">Далее</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enter_gender">Выберите пол</string>
+    <string name="best_photos">Выберите лучшие фотографии</string>
+    <string name="end_button">Завершить!</string>
+    <string name="auth">Авторизация</string>
+    <string name="input_number_pass">Введите номер телефона и пароль:</string>
+    <string name="coming">Войти</string>
+    <string name="sorry">К сожалению, пользователи закончились, зовите своих друзей,и такого больше не повторится</string>
+    <string name="sorry_match">К сожалению, у вас нет пока взаимных лайков, лайкайте,и такого больше не повторится</string>
 </resources>

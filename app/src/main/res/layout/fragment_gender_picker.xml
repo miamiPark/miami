@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".fragments.Registration.NameFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="54dp"
+        android:layout_marginBottom="34dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="@string/about_you"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="34dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="Я..."
+        android:textColor="@color/black"
+        android:textSize="25sp" />
+
+    <info.hoang8f.android.segmented.SegmentedGroup
+        xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/segmented2"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="260dp"
+        android:background="@color/white"
+
+        segmentedgroup:sc_border_width="3dp"
+        segmentedgroup:sc_tint_color="@color/pink"
+        segmentedgroup:sc_checked_text_color="@color/white"
+        >
+
+        <RadioButton
+            android:id="@+id/button_female"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Женщина"
+            android:textSize="17sp"
+            style="@style/RadioButton" />
+
+        <RadioButton
+            android:id="@+id/button_male"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Мужчина"
+            android:textSize="17sp"
+            style="@style/RadioButton" />
+    </info.hoang8f.android.segmented.SegmentedGroup>
+
+    <Button
+        android:id="@+id/gender_next"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="@string/continue_button"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+</LinearLayout>

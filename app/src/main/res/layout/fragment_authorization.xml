@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".fragments.Registration.IdentityFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="34dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="@string/auth"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="@string/input_number_pass"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/phone_input"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:autofillHints=""
+        android:background="#f4f4f5"
+        android:digits="0123456789+-"
+        android:fontFamily="@font/montserrat_light"
+        android:gravity="center"
+        android:hint="928-709-5832"
+        android:inputType="phone"
+        android:paddingVertical="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="#b0b0b1"
+        android:textSize="20sp"
+        android:maxLength="12"/>
+
+    <EditText
+        android:id="@+id/password_input"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:autofillHints=""
+        android:background="#f4f4f5"
+        android:fontFamily="@font/montserrat_light"
+        android:gravity="center"
+        android:hint="*******"
+        android:inputType="textPassword"
+        android:paddingVertical="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="#b0b0b1"
+        android:textSize="20sp" />
+
+
+    <Button
+        android:id="@+id/phone_next"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="@string/coming"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+</LinearLayout>
